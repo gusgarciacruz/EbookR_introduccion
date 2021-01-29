@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>9 dplyr | Una breve introducción a R</title>
+  <meta name="description" content="9 dplyr | Una breve introducción a R" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="9 dplyr | Una breve introducción a R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="9 dplyr | Una breve introducción a R" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="ggplot2.html"/>
+<link rel="next" href="tidyr.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+<script src="book.js"></script>
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Una breve introducción a R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introducción</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#motivación"><i class="fa fa-check"></i><b>1.1</b> Motivación</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#empezando"><i class="fa fa-check"></i><b>1.2</b> Empezando</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="primeros-ejemplos.html"><a href="primeros-ejemplos.html"><i class="fa fa-check"></i><b>2</b> Primeros ejemplos de comandos en R</a><ul>
+<li class="chapter" data-level="2.1" data-path="primeros-ejemplos.html"><a href="primeros-ejemplos.html#r-como-calculadora"><i class="fa fa-check"></i><b>2.1</b> R como calculadora</a></li>
+<li class="chapter" data-level="2.2" data-path="primeros-ejemplos.html"><a href="primeros-ejemplos.html#objetos"><i class="fa fa-check"></i><b>2.2</b> Objetos</a></li>
+<li class="chapter" data-level="2.3" data-path="primeros-ejemplos.html"><a href="primeros-ejemplos.html#escalares-vectores-y-matrices"><i class="fa fa-check"></i><b>2.3</b> Escalares, vectores y matrices</a></li>
+<li class="chapter" data-level="2.4" data-path="primeros-ejemplos.html"><a href="primeros-ejemplos.html#funciones"><i class="fa fa-check"></i><b>2.4</b> Funciones</a></li>
+<li class="chapter" data-level="2.5" data-path="primeros-ejemplos.html"><a href="primeros-ejemplos.html#plots"><i class="fa fa-check"></i><b>2.5</b> Plots</a></li>
+<li class="chapter" data-level="2.6" data-path="primeros-ejemplos.html"><a href="primeros-ejemplos.html#scripts"><i class="fa fa-check"></i><b>2.6</b> Scripts</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="estructura-datos.html"><a href="estructura-datos.html"><i class="fa fa-check"></i><b>3</b> Estructura de datos</a><ul>
+<li class="chapter" data-level="3.1" data-path="estructura-datos.html"><a href="estructura-datos.html#vectores"><i class="fa fa-check"></i><b>3.1</b> Vectores</a></li>
+<li class="chapter" data-level="3.2" data-path="estructura-datos.html"><a href="estructura-datos.html#matrices"><i class="fa fa-check"></i><b>3.2</b> Matrices</a></li>
+<li class="chapter" data-level="3.3" data-path="estructura-datos.html"><a href="estructura-datos.html#data-frames"><i class="fa fa-check"></i><b>3.3</b> Data frames</a></li>
+<li class="chapter" data-level="3.4" data-path="estructura-datos.html"><a href="estructura-datos.html#listas"><i class="fa fa-check"></i><b>3.4</b> Listas</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="leyendo-datos.html"><a href="leyendo-datos.html"><i class="fa fa-check"></i><b>4</b> Leyendo y creando bases de datos</a><ul>
+<li class="chapter" data-level="4.1" data-path="leyendo-datos.html"><a href="leyendo-datos.html#datos-no-disponibles-valores-faltantes-o-missing-data"><i class="fa fa-check"></i><b>4.1</b> Datos no disponibles (Valores faltantes o <em>missing data</em>)</a></li>
+<li class="chapter" data-level="4.2" data-path="leyendo-datos.html"><a href="leyendo-datos.html#leyendo-datos-de-archivos-raw-csv-excel-y-stata"><i class="fa fa-check"></i><b>4.2</b> Leyendo datos de archivos raw, csv, Excel y Stata</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="estadisticas-descriptivas.html"><a href="estadisticas-descriptivas.html"><i class="fa fa-check"></i><b>5</b> Estadísticas descriptivas</a><ul>
+<li class="chapter" data-level="5.1" data-path="estadisticas-descriptivas.html"><a href="estadisticas-descriptivas.html#función-quantile-para-calcular-otros-momentos-de-la-distribución"><i class="fa fa-check"></i><b>5.1</b> Función <em>quantile</em> para calcular otros momentos de la distribución</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="gráficos.html"><a href="gráficos.html"><i class="fa fa-check"></i><b>6</b> Gráficos</a><ul>
+<li class="chapter" data-level="6.1" data-path="gráficos.html"><a href="gráficos.html#opciones-para-editar-los-gráficos"><i class="fa fa-check"></i><b>6.1</b> Opciones para editar los gráficos</a></li>
+<li class="chapter" data-level="6.2" data-path="gráficos.html"><a href="gráficos.html#algunos-tipos-de-gráficos"><i class="fa fa-check"></i><b>6.2</b> Algunos tipos de gráficos</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="gráficos.html"><a href="gráficos.html#scatterplot"><i class="fa fa-check"></i><b>6.2.1</b> <em>Scatterplot</em></a></li>
+<li class="chapter" data-level="6.2.2" data-path="gráficos.html"><a href="gráficos.html#histograma"><i class="fa fa-check"></i><b>6.2.2</b> Histograma</a></li>
+<li class="chapter" data-level="6.2.3" data-path="gráficos.html"><a href="gráficos.html#diagramas-de-densidad"><i class="fa fa-check"></i><b>6.2.3</b> Diagramas de densidad</a></li>
+<li class="chapter" data-level="6.2.4" data-path="gráficos.html"><a href="gráficos.html#gráficos-de-líneas"><i class="fa fa-check"></i><b>6.2.4</b> Gráficos de líneas</a></li>
+<li class="chapter" data-level="6.2.5" data-path="gráficos.html"><a href="gráficos.html#gráfico-de-caja-o-boxplot"><i class="fa fa-check"></i><b>6.2.5</b> Gráfico de caja o <em>boxplot</em></a></li>
+<li class="chapter" data-level="6.2.6" data-path="gráficos.html"><a href="gráficos.html#gráficos-simultáneos"><i class="fa fa-check"></i><b>6.2.6</b> Gráficos simultáneos</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="gráficos.html"><a href="gráficos.html#guardando-gráficos"><i class="fa fa-check"></i><b>6.3</b> Guardando gráficos</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="herramientas-programacion.html"><a href="herramientas-programacion.html"><i class="fa fa-check"></i><b>7</b> Herramientas de programación</a><ul>
+<li class="chapter" data-level="7.1" data-path="herramientas-programacion.html"><a href="herramientas-programacion.html#condicional-if"><i class="fa fa-check"></i><b>7.1</b> Condicional <em>if</em></a></li>
+<li class="chapter" data-level="7.2" data-path="herramientas-programacion.html"><a href="herramientas-programacion.html#ciclo-for"><i class="fa fa-check"></i><b>7.2</b> Ciclo <em>for</em></a></li>
+<li class="chapter" data-level="7.3" data-path="herramientas-programacion.html"><a href="herramientas-programacion.html#escribiendo-tus-propias-funciones"><i class="fa fa-check"></i><b>7.3</b> Escribiendo tus propias funciones</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>8</b> <em>ggplot2</em></a><ul>
+<li class="chapter" data-level="8.1" data-path="ggplot2.html"><a href="ggplot2.html#instalación-de-ggplot2"><i class="fa fa-check"></i><b>8.1</b> Instalación de <em>ggplot2</em></a></li>
+<li class="chapter" data-level="8.2" data-path="ggplot2.html"><a href="ggplot2.html#creando-gráficos-con-ggplot2"><i class="fa fa-check"></i><b>8.2</b> Creando gráficos con <em>ggplot2</em></a><ul>
+<li class="chapter" data-level="8.2.1" data-path="ggplot2.html"><a href="ggplot2.html#mapeo"><i class="fa fa-check"></i><b>8.2.1</b> Mapeo</a></li>
+<li class="chapter" data-level="8.2.2" data-path="ggplot2.html"><a href="ggplot2.html#geoms"><i class="fa fa-check"></i><b>8.2.2</b> <em>Geoms</em></a></li>
+<li class="chapter" data-level="8.2.3" data-path="ggplot2.html"><a href="ggplot2.html#capas"><i class="fa fa-check"></i><b>8.2.3</b> Capas</a></li>
+<li class="chapter" data-level="8.2.4" data-path="ggplot2.html"><a href="ggplot2.html#gráficas-en-varios-paneles"><i class="fa fa-check"></i><b>8.2.4</b> Gráficas en varios paneles</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="ggplot2.html"><a href="ggplot2.html#otros-ejemplos-de-gráficos-con-ggplot2"><i class="fa fa-check"></i><b>8.3</b> Otros ejemplos de gráficos con <em>ggplot2</em></a><ul>
+<li class="chapter" data-level="8.3.1" data-path="ggplot2.html"><a href="ggplot2.html#gráfico-de-densidad"><i class="fa fa-check"></i><b>8.3.1</b> Gráfico de densidad</a></li>
+<li class="chapter" data-level="8.3.2" data-path="ggplot2.html"><a href="ggplot2.html#boxplot"><i class="fa fa-check"></i><b>8.3.2</b> Boxplot</a></li>
+<li class="chapter" data-level="8.3.3" data-path="ggplot2.html"><a href="ggplot2.html#histograma-y-diagrama-de-barras"><i class="fa fa-check"></i><b>8.3.3</b> Histograma y diagrama de barras</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="ggplot2.html"><a href="ggplot2.html#temas-en-ggplot2"><i class="fa fa-check"></i><b>8.4</b> Temas en <em>ggplot2</em></a></li>
+<li class="chapter" data-level="8.5" data-path="ggplot2.html"><a href="ggplot2.html#exportando-gráficos"><i class="fa fa-check"></i><b>8.5</b> Exportando gráficos</a></li>
+<li class="chapter" data-level="8.6" data-path="ggplot2.html"><a href="ggplot2.html#información-adicional"><i class="fa fa-check"></i><b>8.6</b> Información adicional</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="dplyr.html"><a href="dplyr.html"><i class="fa fa-check"></i><b>9</b> <em>dplyr</em></a><ul>
+<li class="chapter" data-level="9.1" data-path="dplyr.html"><a href="dplyr.html#instalación-de-dplyr"><i class="fa fa-check"></i><b>9.1</b> Instalación de dplyr</a></li>
+<li class="chapter" data-level="9.2" data-path="dplyr.html"><a href="dplyr.html#principales-verbos-de-dplyr"><i class="fa fa-check"></i><b>9.2</b> Principales verbos de <em>dplyr</em></a></li>
+<li class="chapter" data-level="9.3" data-path="dplyr.html"><a href="dplyr.html#select"><i class="fa fa-check"></i><b>9.3</b> <em>select()</em></a></li>
+<li class="chapter" data-level="9.4" data-path="dplyr.html"><a href="dplyr.html#arrange"><i class="fa fa-check"></i><b>9.4</b> <em>arrange()</em></a></li>
+<li class="chapter" data-level="9.5" data-path="dplyr.html"><a href="dplyr.html#filter"><i class="fa fa-check"></i><b>9.5</b> <em>filter()</em></a></li>
+<li class="chapter" data-level="9.6" data-path="dplyr.html"><a href="dplyr.html#mutate"><i class="fa fa-check"></i><b>9.6</b> <em>mutate()</em></a></li>
+<li class="chapter" data-level="9.7" data-path="dplyr.html"><a href="dplyr.html#rename"><i class="fa fa-check"></i><b>9.7</b> <em>rename()</em></a></li>
+<li class="chapter" data-level="9.8" data-path="dplyr.html"><a href="dplyr.html#summarise"><i class="fa fa-check"></i><b>9.8</b> <em>summarise()</em></a></li>
+<li class="chapter" data-level="9.9" data-path="dplyr.html"><a href="dplyr.html#operador-pipe"><i class="fa fa-check"></i><b>9.9</b> Operador pipe: %&gt;%</a></li>
+<li class="chapter" data-level="9.10" data-path="dplyr.html"><a href="dplyr.html#combinando-bases-de-datos"><i class="fa fa-check"></i><b>9.10</b> Combinando bases de datos</a></li>
+<li class="chapter" data-level="9.11" data-path="ggplot2.html"><a href="ggplot2.html#información-adicional"><i class="fa fa-check"></i><b>9.11</b> Información adicional</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="tidyr.html"><a href="tidyr.html"><i class="fa fa-check"></i><b>10</b> <em>tidyr</em></a><ul>
+<li class="chapter" data-level="10.1" data-path="tidyr.html"><a href="tidyr.html#instalación-de-tidyr"><i class="fa fa-check"></i><b>10.1</b> Instalación de tidyr</a></li>
+<li class="chapter" data-level="10.2" data-path="tidyr.html"><a href="tidyr.html#principales-5-funciones-de-tidyr"><i class="fa fa-check"></i><b>10.2</b> Principales 5 funciones de <em>tidyr</em></a></li>
+<li class="chapter" data-level="10.3" data-path="ggplot2.html"><a href="ggplot2.html#información-adicional"><i class="fa fa-check"></i><b>10.3</b> Información adicional</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Una breve introducción a R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="dplyr" class="section level1">
+<h1><span class="header-section-number">9</span> <em>dplyr</em></h1>
+<p><em>dplyr</em> es un paquete que permite llevar a cabo muchas de las funciones que pueden llevarse a cabo con la sintaxis básica de R. Ahora bien, dplyr resulta útil ya que propone una “grámatica” para manipular bases de datos. Otra de las ventajas de este paquete es la eficiencia computacional con la que puede llevar a cabo sus funciones.</p>
+<div id="instalación-de-dplyr" class="section level2">
+<h2><span class="header-section-number">9.1</span> Instalación de dplyr</h2>
+<p>Como se mencionaba anteriormente para ggplot2, puede obternerse dplyr instalando <em>tidyverse</em> de la siguiente manera:</p>
+<pre fig.align="center"><code>install.packages(&quot;tidyverse&quot;)</code></pre>
+<p>También puede instalarse solamente dplyr:</p>
+<pre fig.align="center"><code>install.packages(&quot;dplyr&quot;)</code></pre>
+</div>
+<div id="principales-verbos-de-dplyr" class="section level2">
+<h2><span class="header-section-number">9.2</span> Principales verbos de <em>dplyr</em></h2>
+<p>Los “verbos” del paquete son aquellas funciones que pueden entenderse de manera más natural, estas son:</p>
+<ul>
+<li><p><strong>select</strong>: retorna un conjunto de columnas.</p></li>
+<li><p><strong>arrange</strong>: permite reorganizar filas de un data frame.</p></li>
+<li><p><strong>filter</strong>: retorna, dadas ciertas condiciones lógicas, un conjunto de filas.</p></li>
+<li><p><strong>mutate</strong>: permite añadir nuevas variables o transformar variables ya existentes.</p></li>
+<li><p><strong>rename</strong>: cambia el nombre de las variables de un data frame.</p></li>
+<li><p><strong>summarise</strong>: resume la información contenida en un data frame.</p></li>
+<li><p><strong>%&gt;%</strong>: llamado el operador “pipe” permite conectar multiples accciones.</p></li>
+</ul>
+<p>A continuación, estudiaremos cada una de estas funciones.</p>
+</div>
+<div id="select" class="section level2">
+<h2><span class="header-section-number">9.3</span> <em>select()</em></h2>
+<p>Inicialmente debemos cargar la librería para usar sus funciones:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">library</span>(dplyr)</a></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;dplyr&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     intersect, setdiff, setequal, union</code></pre>
+<p>Igualmente instalamos y cargamos una librería cuyos datos podremos utilizar:</p>
+<pre fig.align="center"><code>install.packages(&quot;nycflights13&quot;)</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="kw">library</span>(nycflights13)</a></code></pre></div>
+<p>Podemos familiarizarnos con los datos que se encuentran en el paquete <em>nycflights13</em> usando la función View()</p>
+<pre fig.align="center"><code>View(airlines)
+View(flights)
+View(weather)</code></pre>
+<p>Observemos el contenido del data frame <em>weather</em>:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="kw">colnames</span>(weather) </a></code></pre></div>
+<pre><code>##  [1] &quot;origin&quot;     &quot;year&quot;       &quot;month&quot;      &quot;day&quot;        &quot;hour&quot;      
+##  [6] &quot;temp&quot;       &quot;dewp&quot;       &quot;humid&quot;      &quot;wind_dir&quot;   &quot;wind_speed&quot;
+## [11] &quot;wind_gust&quot;  &quot;precip&quot;     &quot;pressure&quot;   &quot;visib&quot;      &quot;time_hour&quot;</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1">weather</a></code></pre></div>
+<pre><code>## # A tibble: 26,115 x 15
+##    origin  year month   day  hour  temp  dewp humid wind_dir wind_speed
+##    &lt;chr&gt;  &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;
+##  1 EWR     2013     1     1     1  39.0  26.1  59.4      270      10.4 
+##  2 EWR     2013     1     1     2  39.0  27.0  61.6      250       8.06
+##  3 EWR     2013     1     1     3  39.0  28.0  64.4      240      11.5 
+##  4 EWR     2013     1     1     4  39.9  28.0  62.2      250      12.7 
+##  5 EWR     2013     1     1     5  39.0  28.0  64.4      260      12.7 
+##  6 EWR     2013     1     1     6  37.9  28.0  67.2      240      11.5 
+##  7 EWR     2013     1     1     7  39.0  28.0  64.4      240      15.0 
+##  8 EWR     2013     1     1     8  39.9  28.0  62.2      250      10.4 
+##  9 EWR     2013     1     1     9  39.9  28.0  62.2      260      15.0 
+## 10 EWR     2013     1     1    10  41    28.0  59.6      260      13.8 
+## # ... with 26,105 more rows, and 5 more variables: wind_gust &lt;dbl&gt;,
+## #   precip &lt;dbl&gt;, pressure &lt;dbl&gt;, visib &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
+<p>Para crear otra base de datos a partir de <em>weather</em> que tenga sólo las variables <em>origin</em>, <em>year</em>, <em>month</em>, <em>day</em> y <em>temp</em> procedemos de la siguiente manera:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1">data &lt;-<span class="st"> </span><span class="kw">select</span>(weather, origin, year, month, day, temp)</a>
+<a class="sourceLine" id="cb14-2" title="2"><span class="kw">colnames</span>(data)</a></code></pre></div>
+<pre><code>## [1] &quot;origin&quot; &quot;year&quot;   &quot;month&quot;  &quot;day&quot;    &quot;temp&quot;</code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1">data</a></code></pre></div>
+<pre><code>## # A tibble: 26,115 x 5
+##    origin  year month   day  temp
+##    &lt;chr&gt;  &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt;
+##  1 EWR     2013     1     1  39.0
+##  2 EWR     2013     1     1  39.0
+##  3 EWR     2013     1     1  39.0
+##  4 EWR     2013     1     1  39.9
+##  5 EWR     2013     1     1  39.0
+##  6 EWR     2013     1     1  37.9
+##  7 EWR     2013     1     1  39.0
+##  8 EWR     2013     1     1  39.9
+##  9 EWR     2013     1     1  39.9
+## 10 EWR     2013     1     1  41  
+## # ... with 26,105 more rows</code></pre>
+<p>Nótese como el primer argumento corresponde al data frame <em>weather</em>, del cual se seleccionan las variables que le siguen por comas.</p>
+<p>También podemos excluir columnas específicas, agregando un guión ‘<em>-</em>’</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1">data &lt;-<span class="st"> </span><span class="kw">select</span>(weather, <span class="op">-</span>origin)</a>
+<a class="sourceLine" id="cb18-2" title="2"><span class="kw">colnames</span>(data)</a></code></pre></div>
+<pre><code>##  [1] &quot;year&quot;       &quot;month&quot;      &quot;day&quot;        &quot;hour&quot;       &quot;temp&quot;      
+##  [6] &quot;dewp&quot;       &quot;humid&quot;      &quot;wind_dir&quot;   &quot;wind_speed&quot; &quot;wind_gust&quot; 
+## [11] &quot;precip&quot;     &quot;pressure&quot;   &quot;visib&quot;      &quot;time_hour&quot;</code></pre>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1">data</a></code></pre></div>
+<pre><code>## # A tibble: 26,115 x 14
+##     year month   day  hour  temp  dewp humid wind_dir wind_speed wind_gust
+##    &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt;
+##  1  2013     1     1     1  39.0  26.1  59.4      270      10.4         NA
+##  2  2013     1     1     2  39.0  27.0  61.6      250       8.06        NA
+##  3  2013     1     1     3  39.0  28.0  64.4      240      11.5         NA
+##  4  2013     1     1     4  39.9  28.0  62.2      250      12.7         NA
+##  5  2013     1     1     5  39.0  28.0  64.4      260      12.7         NA
+##  6  2013     1     1     6  37.9  28.0  67.2      240      11.5         NA
+##  7  2013     1     1     7  39.0  28.0  64.4      240      15.0         NA
+##  8  2013     1     1     8  39.9  28.0  62.2      250      10.4         NA
+##  9  2013     1     1     9  39.9  28.0  62.2      260      15.0         NA
+## 10  2013     1     1    10  41    28.0  59.6      260      13.8         NA
+## # ... with 26,105 more rows, and 4 more variables: precip &lt;dbl&gt;,
+## #   pressure &lt;dbl&gt;, visib &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
+<p>De la misma manera podemos usar la notación “:”, aprendida anteriormente, para configurar rangos de columnas:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1">data &lt;-<span class="st"> </span><span class="kw">select</span>(weather, origin<span class="op">:</span>temp)</a>
+<a class="sourceLine" id="cb22-2" title="2"><span class="kw">colnames</span>(data)</a></code></pre></div>
+<pre><code>## [1] &quot;origin&quot; &quot;year&quot;   &quot;month&quot;  &quot;day&quot;    &quot;hour&quot;   &quot;temp&quot;</code></pre>
+<p>Podríamos combinar funciones de la siguiente manera:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1">data &lt;-<span class="st"> </span><span class="kw">select</span>(weather, <span class="op">-</span>(origin<span class="op">:</span>temp))</a>
+<a class="sourceLine" id="cb24-2" title="2"><span class="kw">colnames</span>(data)</a></code></pre></div>
+<pre><code>## [1] &quot;dewp&quot;       &quot;humid&quot;      &quot;wind_dir&quot;   &quot;wind_speed&quot; &quot;wind_gust&quot; 
+## [6] &quot;precip&quot;     &quot;pressure&quot;   &quot;visib&quot;      &quot;time_hour&quot;</code></pre>
+<p>En el ejemplo anterior retiramos las columnas comprendidas entre <em>origin</em> y <em>temp</em> del data frame <em>weather</em>.</p>
+</div>
+<div id="arrange" class="section level2">
+<h2><span class="header-section-number">9.4</span> <em>arrange()</em></h2>
+<p>La función <em>arrange()</em> permite reorganizar las filas de una base de datos. Por defecto, <em>arrange()</em> organiza las filas por orden ascendente.</p>
+<p>Para organizar las filas del data frame <em>weather</em> en orden ascendente <strong>dados los valores de la variable <em>temp</em> </strong> el código es el siguiente:</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1">data &lt;-<span class="st"> </span><span class="kw">arrange</span>(weather, temp)</a>
+<a class="sourceLine" id="cb26-2" title="2">data</a></code></pre></div>
+<pre><code>## # A tibble: 26,115 x 15
+##    origin  year month   day  hour  temp  dewp humid wind_dir wind_speed
+##    &lt;chr&gt;  &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;
+##  1 EWR     2013     1    23     5  10.9 -4     50.2      270      10.4 
+##  2 EWR     2013     1    23     6  10.9 -4     50.2      270      11.5 
+##  3 EWR     2013     1    23     2  12.0 -7.06  41.3      270      10.4 
+##  4 EWR     2013     1    23     3  12.0 -5.98  43.5      270       8.06
+##  5 EWR     2013     1    23     4  12.0 -5.08  45.4      270       9.21
+##  6 EWR     2013     1    23     7  12.0 -2.92  50.4      270      11.5 
+##  7 EWR     2013     1    24     3  12.0  1.94  63.3       30       4.60
+##  8 JFK     2013     1    23     4  12.0 -7.06  41.3      280      12.7 
+##  9 JFK     2013     1    23     5  12.0 -5.08  45.4      280      15.0 
+## 10 JFK     2013     1    23     6  12.0 -5.08  45.4      290      13.8 
+## # ... with 26,105 more rows, and 5 more variables: wind_gust &lt;dbl&gt;,
+## #   precip &lt;dbl&gt;, pressure &lt;dbl&gt;, visib &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
+<p>Por otro lado, si queremos organizarlas de manera descendente podríamos hacer lo siguiente:</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" title="1">data &lt;-<span class="st"> </span><span class="kw">arrange</span>(weather, <span class="kw">desc</span>(temp))</a>
+<a class="sourceLine" id="cb28-2" title="2">data</a></code></pre></div>
+<pre><code>## # A tibble: 26,115 x 15
+##    origin  year month   day  hour  temp  dewp humid wind_dir wind_speed
+##    &lt;chr&gt;  &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;
+##  1 EWR     2013     7    18    15 100.   66.0  33.2      300       9.21
+##  2 EWR     2013     7    19    16 100.   71.1  39.5      230      20.7 
+##  3 EWR     2013     7    19    13  99.0  72.0  42.1      260      18.4 
+##  4 EWR     2013     7    19    14  99.0  71.1  40.8      250      20.7 
+##  5 EWR     2013     7    19    15  99.0  72.0  42.1      240      16.1 
+##  6 LGA     2013     7    18    15  99.0  64.0  32.0      250      12.7 
+##  7 LGA     2013     7    19    15  99.0  69.1  38.2      240      16.1 
+##  8 LGA     2013     7    19    16  99.0  69.1  38.2      230      15.0 
+##  9 EWR     2013     7    18    12  98.1  69.1  39.2      300       9.21
+## 10 EWR     2013     7    18    13  98.1  66.9  36.4      300      11.5 
+## # ... with 26,105 more rows, and 5 more variables: wind_gust &lt;dbl&gt;,
+## #   precip &lt;dbl&gt;, pressure &lt;dbl&gt;, visib &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
+<p>Para reorganizar las filas de un data frame podemos considerar más de una variable, por ejemplo, por <em>day</em> y <em>hour</em>:</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1">data &lt;-<span class="st"> </span><span class="kw">arrange</span>(weather, day, hour)</a>
+<a class="sourceLine" id="cb30-2" title="2">data</a></code></pre></div>
+<pre><code>## # A tibble: 26,115 x 15
+##    origin  year month   day  hour  temp  dewp humid wind_dir wind_speed
+##    &lt;chr&gt;  &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;
+##  1 EWR     2013     2     1     0  28.9  10.9  46.4      250      19.6 
+##  2 EWR     2013     3     1     0  37.0  30.0  75.5      250       4.60
+##  3 EWR     2013     4     1     0  46.4  45.0  96.0      270       6.90
+##  4 EWR     2013     5     1     0  52.0  30.9  44.3        0       0   
+##  5 EWR     2013     6     1     0  78.1  64.0  62.0      230       6.90
+##  6 EWR     2013     7     1     0  75.2  71.6  88.6      140       3.45
+##  7 EWR     2013     8     1     0  73.0  63.0  70.7      180       4.60
+##  8 EWR     2013     9     1     0  80.1  71.1  74.1      220       5.75
+##  9 EWR     2013    10     1     0  59    54.0  83.3      230       8.06
+## 10 EWR     2013    11     1     0  64.0  62.1  93.3      200      11.5 
+## # ... with 26,105 more rows, and 5 more variables: wind_gust &lt;dbl&gt;,
+## #   precip &lt;dbl&gt;, pressure &lt;dbl&gt;, visib &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
+</div>
+<div id="filter" class="section level2">
+<h2><span class="header-section-number">9.5</span> <em>filter()</em></h2>
+<p>Esta función nos permite filtrar filas dada una condición:</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" title="1">data &lt;-<span class="st"> </span><span class="kw">filter</span>(weather, temp <span class="op">&gt;=</span><span class="st"> </span><span class="dv">52</span>)</a>
+<a class="sourceLine" id="cb32-2" title="2">data</a></code></pre></div>
+<pre><code>## # A tibble: 14,181 x 15
+##    origin  year month   day  hour  temp  dewp humid wind_dir wind_speed
+##    &lt;chr&gt;  &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;
+##  1 EWR     2013     1    14     9  53.6  52.0 100        250       5.75
+##  2 EWR     2013     1    14    10  55.9  53.1  90.0      270       5.75
+##  3 EWR     2013     1    14    11  57.9  50    74.9      320      11.5 
+##  4 EWR     2013     1    14    12  55.9  45.0  66.5      340      11.5 
+##  5 EWR     2013     1    14    13  57.0  44.1  61.8      320      10.4 
+##  6 EWR     2013     1    14    14  55.9  37.9  50.7      340      12.7 
+##  7 EWR     2013     1    14    15  55.0  39.0  54.7      350      13.8 
+##  8 EWR     2013     1    14    16  53.1  30.9  42.6      320      15.0 
+##  9 EWR     2013     1    20    10  54.0  28.0  36.6      240      19.6 
+## 10 EWR     2013     1    20    11  54.0  27.0  35.0      250      19.6 
+## # ... with 14,171 more rows, and 5 more variables: wind_gust &lt;dbl&gt;,
+## #   precip &lt;dbl&gt;, pressure &lt;dbl&gt;, visib &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
+<p>En el ejemplo anterior incluimos las filas que cumplieran la condición especificada en el segundo argumento, es decir, vuelos realizados con temperaturas mayores a 52º.</p>
+<p>También es posible incluir varias condiciones, donde además de la condición de temperatura, filtramos por vuelos que tengan como origen el aeropuerto <em>EWR</em>.:</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" title="1"><span class="kw">table</span>(weather<span class="op">$</span>origin)</a></code></pre></div>
+<pre><code>## 
+##  EWR  JFK  LGA 
+## 8703 8706 8706</code></pre>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" title="1">data &lt;-<span class="st"> </span><span class="kw">filter</span>(weather, temp <span class="op">&gt;=</span><span class="st"> </span><span class="dv">52</span>, origin<span class="op">==</span><span class="st">&quot;EWR&quot;</span>)</a>
+<a class="sourceLine" id="cb36-2" title="2">data</a></code></pre></div>
+<pre><code>## # A tibble: 4,775 x 15
+##    origin  year month   day  hour  temp  dewp humid wind_dir wind_speed
+##    &lt;chr&gt;  &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;
+##  1 EWR     2013     1    14     9  53.6  52.0 100        250       5.75
+##  2 EWR     2013     1    14    10  55.9  53.1  90.0      270       5.75
+##  3 EWR     2013     1    14    11  57.9  50    74.9      320      11.5 
+##  4 EWR     2013     1    14    12  55.9  45.0  66.5      340      11.5 
+##  5 EWR     2013     1    14    13  57.0  44.1  61.8      320      10.4 
+##  6 EWR     2013     1    14    14  55.9  37.9  50.7      340      12.7 
+##  7 EWR     2013     1    14    15  55.0  39.0  54.7      350      13.8 
+##  8 EWR     2013     1    14    16  53.1  30.9  42.6      320      15.0 
+##  9 EWR     2013     1    20    10  54.0  28.0  36.6      240      19.6 
+## 10 EWR     2013     1    20    11  54.0  27.0  35.0      250      19.6 
+## # ... with 4,765 more rows, and 5 more variables: wind_gust &lt;dbl&gt;,
+## #   precip &lt;dbl&gt;, pressure &lt;dbl&gt;, visib &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
+<p>En la siguiente función, nos quedamos con los datos de temperatura entre 52 y 80 y donde el origen sean los aeropuertos de <em>EWR</em> y <em>JFK</em>.</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" title="1">data &lt;-<span class="st"> </span><span class="kw">filter</span>(weather, temp <span class="op">&gt;=</span><span class="st"> </span><span class="dv">52</span> <span class="op">&amp;</span><span class="st"> </span>temp <span class="op">&lt;=</span><span class="st"> </span><span class="dv">80</span>, origin <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;EWR&quot;</span>,<span class="st">&quot;JFK&quot;</span>))</a>
+<a class="sourceLine" id="cb38-2" title="2"><span class="kw">table</span>(data<span class="op">$</span>origin)</a></code></pre></div>
+<pre><code>## 
+##  EWR  JFK 
+## 3900 4076</code></pre>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" title="1"><span class="kw">summary</span>(data<span class="op">$</span>temp)</a></code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   52.52   60.08   66.20   66.32   73.04   78.98</code></pre>
+<p>Para plantear las condiciones según las cuales se filtrará el data frame hacemos uso de los operadores lógicos mencionados en el <em>capítulo 6</em>.</p>
+<p>Otro ejemplo con filtros simúltaneos:</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" title="1">data &lt;-<span class="st"> </span><span class="kw">filter</span>(weather, temp <span class="op">&gt;=</span><span class="st"> </span><span class="dv">52</span> <span class="op">&amp;</span><span class="st"> </span>humid <span class="op">&lt;</span><span class="st"> </span><span class="dv">80</span>)</a></code></pre></div>
+</div>
+<div id="mutate" class="section level2">
+<h2><span class="header-section-number">9.6</span> <em>mutate()</em></h2>
+<p>La función <em>mutate()</em> permite realizar transformaciones de las variables del data frame. Tanto reconfigurar variables dadas o crear nuevas usando información ya incluida.</p>
+<p>Continuando con el data frame <em>weather</em>, creemos la variable <em>temp3</em> que es la divición de <em>temp</em> sobre 3:</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" title="1">data &lt;-<span class="st"> </span><span class="kw">mutate</span>(weather, <span class="dt">temp3 =</span> temp<span class="op">/</span><span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb43-2" title="2"><span class="kw">head</span>(data[,<span class="kw">c</span>(<span class="st">&quot;temp&quot;</span>,<span class="st">&quot;temp3&quot;</span>)],<span class="dv">3</span>) <span class="co"># Con esta función muestra las variables seleccionadas y las 3 primeras observaciones</span></a></code></pre></div>
+<pre><code>## # A tibble: 3 x 2
+##    temp temp3
+##   &lt;dbl&gt; &lt;dbl&gt;
+## 1  39.0  13.0
+## 2  39.0  13.0
+## 3  39.0  13.0</code></pre>
+<p>Ahora creamos una variable binaria a partir de <em>temp</em>, donde la nueva variable <em>btemp</em> va a tomar el valor de 1 si <em>temp</em> se encuentra entre 52 y 80, y 0 en otro caso. El código sería:</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" title="1">data &lt;-<span class="st"> </span><span class="kw">mutate</span>(weather, <span class="dt">btemp =</span> <span class="kw">ifelse</span>(temp <span class="op">&gt;=</span><span class="st"> </span><span class="dv">52</span> <span class="op">&amp;</span><span class="st"> </span>temp <span class="op">&lt;=</span><span class="st"> </span><span class="dv">80</span>, <span class="dv">1</span>, <span class="dv">0</span>))</a>
+<a class="sourceLine" id="cb45-2" title="2"><span class="kw">head</span>(data[,<span class="kw">c</span>(<span class="st">&quot;temp&quot;</span>,<span class="st">&quot;btemp&quot;</span>)],<span class="dv">3</span>)</a></code></pre></div>
+<pre><code>## # A tibble: 3 x 2
+##    temp btemp
+##   &lt;dbl&gt; &lt;dbl&gt;
+## 1  39.0     0
+## 2  39.0     0
+## 3  39.0     0</code></pre>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" title="1"><span class="kw">table</span>(data<span class="op">$</span>btemp)</a></code></pre></div>
+<pre><code>## 
+##     0     1 
+## 14154 11960</code></pre>
+<p>También es posible crear variables más complejas utilizando otras funciones en <em>mutate</em>. Por ejemplo, creemos una variable que exprese las frecuencias absolutas acumuladas de la variable <em>temp</em>:</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" title="1">data &lt;-<span class="st"> </span><span class="kw">mutate</span>(weather, <span class="dt">acum.temp =</span> <span class="kw">cumsum</span>(temp))</a>
+<a class="sourceLine" id="cb49-2" title="2"><span class="kw">head</span>(data[,<span class="kw">c</span>(<span class="st">&quot;temp&quot;</span>,<span class="st">&quot;acum.temp&quot;</span>)],<span class="dv">5</span>)</a></code></pre></div>
+<pre><code>## # A tibble: 5 x 2
+##    temp acum.temp
+##   &lt;dbl&gt;     &lt;dbl&gt;
+## 1  39.0      39.0
+## 2  39.0      78.0
+## 3  39.0     117. 
+## 4  39.9     157. 
+## 5  39.0     196</code></pre>
+</div>
+<div id="rename" class="section level2">
+<h2><span class="header-section-number">9.7</span> <em>rename()</em></h2>
+<p><em>rename</em> nos permite renombrar las variables de un data frame de una forma sencilla e intuitiva.</p>
+<p>Observemos los nombres de las variables del data frame <em>weather</em>:</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" title="1"> <span class="kw">colnames</span>(weather)</a></code></pre></div>
+<pre><code>##  [1] &quot;origin&quot;     &quot;year&quot;       &quot;month&quot;      &quot;day&quot;        &quot;hour&quot;      
+##  [6] &quot;temp&quot;       &quot;dewp&quot;       &quot;humid&quot;      &quot;wind_dir&quot;   &quot;wind_speed&quot;
+## [11] &quot;wind_gust&quot;  &quot;precip&quot;     &quot;pressure&quot;   &quot;visib&quot;      &quot;time_hour&quot;</code></pre>
+<p>Podríamos utilizar la función <em>rename()</em> para traducir los nombres de algunas variables del data frame <em>weather</em>, por ejemplo:</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" title="1">data &lt;-<span class="st"> </span><span class="kw">rename</span>(weather, <span class="dt">origen =</span> origin, añ<span class="dt">o =</span> year, dí<span class="dt">a =</span> day, <span class="dt">mes =</span> month, <span class="dt">hora =</span> hour, <span class="dt">temperatura =</span> temp)</a>
+<a class="sourceLine" id="cb53-2" title="2"><span class="kw">colnames</span>(data)</a></code></pre></div>
+<pre><code>##  [1] &quot;origen&quot;      &quot;año&quot;         &quot;mes&quot;         &quot;día&quot;         &quot;hora&quot;       
+##  [6] &quot;temperatura&quot; &quot;dewp&quot;        &quot;humid&quot;       &quot;wind_dir&quot;    &quot;wind_speed&quot; 
+## [11] &quot;wind_gust&quot;   &quot;precip&quot;      &quot;pressure&quot;    &quot;visib&quot;       &quot;time_hour&quot;</code></pre>
+</div>
+<div id="summarise" class="section level2">
+<h2><span class="header-section-number">9.8</span> <em>summarise()</em></h2>
+<p>La función <em>summarise</em> crea una nueva base de datos a partir otra. Es una función similar a <em>mutate</em>, no obstante, este crea data frames nuevos y no columnas dentro de uno.</p>
+<p>Observemos el data frame <em>planes</em> que brinda información sobre los aviones y creemos uno nuevo donde incluyamos la media y varianza del número de asientos:</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" title="1"><span class="kw">colnames</span>(planes) </a></code></pre></div>
+<pre><code>## [1] &quot;tailnum&quot;      &quot;year&quot;         &quot;type&quot;         &quot;manufacturer&quot; &quot;model&quot;       
+## [6] &quot;engines&quot;      &quot;seats&quot;        &quot;speed&quot;        &quot;engine&quot;</code></pre>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" title="1"><span class="kw">head</span>(planes, <span class="dv">5</span>)</a></code></pre></div>
+<pre><code>## # A tibble: 5 x 9
+##   tailnum  year type           manufacturer   model  engines seats speed engine 
+##   &lt;chr&gt;   &lt;int&gt; &lt;chr&gt;          &lt;chr&gt;          &lt;chr&gt;    &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;  
+## 1 N10156   2004 Fixed wing mu~ EMBRAER        EMB-1~       2    55    NA Turbo-~
+## 2 N102UW   1998 Fixed wing mu~ AIRBUS INDUST~ A320-~       2   182    NA Turbo-~
+## 3 N103US   1999 Fixed wing mu~ AIRBUS INDUST~ A320-~       2   182    NA Turbo-~
+## 4 N104UW   1999 Fixed wing mu~ AIRBUS INDUST~ A320-~       2   182    NA Turbo-~
+## 5 N10575   2002 Fixed wing mu~ EMBRAER        EMB-1~       2    55    NA Turbo-~</code></pre>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" title="1"> data &lt;-<span class="st"> </span><span class="kw">summarise</span>(planes, <span class="dt">media_seats =</span> <span class="kw">mean</span>(seats), <span class="dt">var_seats =</span> <span class="kw">var</span>(seats))</a>
+<a class="sourceLine" id="cb59-2" title="2"> data</a></code></pre></div>
+<pre><code>## # A tibble: 1 x 2
+##   media_seats var_seats
+##         &lt;dbl&gt;     &lt;dbl&gt;
+## 1        154.     5425.</code></pre>
+</div>
+<div id="operador-pipe" class="section level2">
+<h2><span class="header-section-number">9.9</span> Operador pipe: %&gt;%</h2>
+<p>Como su nombre lo dice, el operador pipe permite concatenar funciones distintas del paquete <em>dplyr</em> permitiendo que adopten forma de tubería. Este operador permite de forma intuitiva realizar funciones anidadas. Un ejemplo claro de este operador puede plantearse usando cualquiera de las funciones que hemos aprendido anteriormente.</p>
+<p>Supongamos que queremos construir una base de datos a partir de <em>weather</em> teniendo en cuenta ciertos filtros a partir de la variable <em>temp</em>, con la función pipe el código sería:</p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" title="1">data &lt;-<span class="st"> </span>weather <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(temp <span class="op">&gt;=</span><span class="st"> </span><span class="dv">52</span> <span class="op">&amp;</span><span class="st"> </span>temp <span class="op">&lt;=</span><span class="st"> </span><span class="dv">80</span>)</a>
+<a class="sourceLine" id="cb61-2" title="2"><span class="kw">summary</span>(data<span class="op">$</span>temp)</a></code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   52.52   60.08   66.92   66.39   73.04   78.98</code></pre>
+<p>La idea, entonces, es que a la base de datos <em>weather</em> le aplicamos (%&gt;%) el filtro, lo cual nos da como resultado la nueva base <em>data</em> con el filtro.</p>
+<p>Imaginemos, ahora, que deseamos aplicar varias de las funciones del paquete <em>dplyr</em> a un mismo data frame ¿cómo podríamos emplear el operador %&gt;%? Analicemos el siguiente ejemplo:</p>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" title="1">data &lt;-<span class="st"> </span>weather <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb63-2" title="2"><span class="st">         </span><span class="kw">filter</span>(temp<span class="op">&gt;=</span><span class="dv">52</span> <span class="op">&amp;</span><span class="st"> </span>temp<span class="op">&lt;=</span><span class="dv">80</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb63-3" title="3"><span class="st">         </span><span class="kw">select</span>(origin<span class="op">:</span>temp)</a>
+<a class="sourceLine" id="cb63-4" title="4"><span class="kw">head</span>(data, <span class="dv">5</span>)</a></code></pre></div>
+<pre><code>## # A tibble: 5 x 6
+##   origin  year month   day  hour  temp
+##   &lt;chr&gt;  &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt;
+## 1 EWR     2013     1    14     9  53.6
+## 2 EWR     2013     1    14    10  55.9
+## 3 EWR     2013     1    14    11  57.9
+## 4 EWR     2013     1    14    12  55.9
+## 5 EWR     2013     1    14    13  57.0</code></pre>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" title="1"><span class="kw">summary</span>(data<span class="op">$</span>temp)</a></code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   52.52   60.08   66.92   66.39   73.04   78.98</code></pre>
+<p>En el ejemplo anterior aplicamos dos condiciones al data frame <em>weather</em>: primero filtramos y al resultado del filtrado seleccionamos las columnas comprendidas entre <em>origin</em> y <em>temp</em>.</p>
+<p>Ahora, filtremos, seleccionamos variables y creamos dos variables nuevas:</p>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" title="1">data &lt;-<span class="st"> </span>weather <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb67-2" title="2"><span class="st">         </span><span class="kw">filter</span>(temp<span class="op">&gt;=</span><span class="dv">52</span> <span class="op">&amp;</span><span class="st"> </span>temp<span class="op">&lt;=</span><span class="dv">80</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb67-3" title="3"><span class="st">         </span><span class="kw">select</span>(origin<span class="op">:</span>temp) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb67-4" title="4"><span class="st">         </span><span class="kw">mutate</span>(<span class="dt">temp3 =</span> temp<span class="op">/</span><span class="dv">3</span>, <span class="dt">btemp =</span> <span class="kw">ifelse</span>(temp <span class="op">&gt;=</span><span class="st"> </span><span class="dv">52</span> <span class="op">&amp;</span><span class="st"> </span>temp <span class="op">&lt;=</span><span class="st"> </span><span class="dv">80</span>, <span class="dv">1</span>, <span class="dv">0</span>))</a>
+<a class="sourceLine" id="cb67-5" title="5"><span class="kw">head</span>(data, <span class="dv">5</span>)</a></code></pre></div>
+<pre><code>## # A tibble: 5 x 8
+##   origin  year month   day  hour  temp temp3 btemp
+##   &lt;chr&gt;  &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 EWR     2013     1    14     9  53.6  17.9     1
+## 2 EWR     2013     1    14    10  55.9  18.6     1
+## 3 EWR     2013     1    14    11  57.9  19.3     1
+## 4 EWR     2013     1    14    12  55.9  18.6     1
+## 5 EWR     2013     1    14    13  57.0  19.0     1</code></pre>
+<p>Calculemos la media y la varianza de <em>seats</em> por <em>type</em>, y para ello utilizamos la función <em>group_by</em>:</p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" title="1"> <span class="kw">table</span>(planes<span class="op">$</span>type) <span class="co"># Primero miremos cuántas observaciones hay por *type*</span></a></code></pre></div>
+<pre><code>## 
+##  Fixed wing multi engine Fixed wing single engine               Rotorcraft 
+##                     3292                       25                        5</code></pre>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb71-1" title="1"> data &lt;-<span class="st"> </span>planes <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb71-2" title="2"><span class="st">         </span><span class="kw">group_by</span>(type) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb71-3" title="3"><span class="st">         </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">n</span>(), <span class="dt">media_seats =</span> <span class="kw">mean</span>(seats), <span class="dt">var_seats =</span> <span class="kw">var</span>(seats))</a></code></pre></div>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb73-1" title="1"> data</a></code></pre></div>
+<pre><code>## # A tibble: 3 x 4
+##   type                         n media_seats var_seats
+##   &lt;chr&gt;                    &lt;int&gt;       &lt;dbl&gt;     &lt;dbl&gt;
+## 1 Fixed wing multi engine   3292      156.     5268.  
+## 2 Fixed wing single engine    25        3.68      9.48
+## 3 Rotorcraft                   5        8.6      15.3</code></pre>
+</div>
+<div id="combinando-bases-de-datos" class="section level2">
+<h2><span class="header-section-number">9.10</span> Combinando bases de datos</h2>
+<p>Existen dos principales formas de combinar bases de datos:</p>
+<ul>
+<li><strong>Verticalmente</strong>: adicionar nuevas observaciones</li>
+<li><strong>Horizontalmente</strong>: adicionar nuevas variables</li>
+</ul>
+<p><strong>Verticalmente</strong></p>
+<p>En este caso tendremos dos bases de datos con igual variables pero con diferentes individuos, con lo cual el número de observaciones de la base de datos final tendrá la suma de las observaciones de las dos bases pegadas.</p>
+<p>Tomando de nuevo la base de datos <em>weather</em> la dividimos por la mitad en términos de las observaciones y luego utilizamos la función <em>bind_rows</em> del paquete <em>dplyr</em> para volver a juntar las bases de datos.</p>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb75-1" title="1"><span class="kw">nrow</span>(weather) <span class="co"># Para determinar en número de observaciones</span></a></code></pre></div>
+<pre><code>## [1] 26115</code></pre>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb77-1" title="1"><span class="dv">26115</span><span class="op">/</span><span class="dv">2</span></a></code></pre></div>
+<pre><code>## [1] 13057.5</code></pre>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb79-1" title="1">weather1 &lt;-<span class="st"> </span>weather[<span class="dv">1</span><span class="op">:</span><span class="dv">13057</span>,]</a>
+<a class="sourceLine" id="cb79-2" title="2"><span class="kw">nrow</span>(weather1)</a></code></pre></div>
+<pre><code>## [1] 13057</code></pre>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb81-1" title="1">weather2 &lt;-<span class="st"> </span>weather[<span class="dv">13058</span><span class="op">:</span><span class="dv">26115</span>,]</a>
+<a class="sourceLine" id="cb81-2" title="2"><span class="kw">nrow</span>(weather2)</a></code></pre></div>
+<pre><code>## [1] 13058</code></pre>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb83-1" title="1">weatherwhole &lt;-<span class="st"> </span><span class="kw">bind_rows</span>(weather1, weather2)</a>
+<a class="sourceLine" id="cb83-2" title="2"><span class="kw">nrow</span>(weatherwhole)</a></code></pre></div>
+<pre><code>## [1] 26115</code></pre>
+<p><strong>Horizontalmente</strong></p>
+<p>Aquí la idea es que se tienen dos bases de datos con los mismos individuos pero en cada una de ellas hay diferentes variables de esos individuos y la pega de las bases se hace a través de un identificados de los individuos que se encuentra en las dos bases.</p>
+<p>Se tienen dos bases de datos de tres paises. En la base <em>GDP2020</em> se tiene información sobre el GDP y tipo de moneda, mientras que en <em>DollarValue2020</em> se cuenta con información sobre la tasa de cambio del dólar. La idea, entonces, es juntar las dos bases de datos utilizando como llave o identificador los países.</p>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb85-1" title="1">GDP2020 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">Country =</span> <span class="kw">c</span>(<span class="st">&quot;UK&quot;</span>, <span class="st">&quot;USA&quot;</span>, <span class="st">&quot;France&quot;</span>),</a>
+<a class="sourceLine" id="cb85-2" title="2">                  <span class="dt">Currency =</span> <span class="kw">c</span>(<span class="st">&quot;Pound&quot;</span>, <span class="st">&quot;Dollar&quot;</span>, <span class="st">&quot;Euro&quot;</span>),</a>
+<a class="sourceLine" id="cb85-3" title="3">                  <span class="dt">GDPTrillions =</span> <span class="kw">c</span>(<span class="fl">2.1</span>, <span class="fl">20.58</span>, <span class="fl">2.78</span>))</a>
+<a class="sourceLine" id="cb85-4" title="4">GDP2020</a></code></pre></div>
+<pre><code>##   Country Currency GDPTrillions
+## 1      UK    Pound         2.10
+## 2     USA   Dollar        20.58
+## 3  France     Euro         2.78</code></pre>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb87-1" title="1">DollarValue2020 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">Country =</span> <span class="kw">c</span>(<span class="st">&quot;France&quot;</span>, <span class="st">&quot;UK&quot;</span>, <span class="st">&quot;USA&quot;</span>),</a>
+<a class="sourceLine" id="cb87-2" title="2">                              <span class="dt">InDollars =</span> <span class="kw">c</span>(<span class="fl">1.104</span>, <span class="fl">1.256</span>, <span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb87-3" title="3">DollarValue2020</a></code></pre></div>
+<pre><code>##   Country InDollars
+## 1  France     1.104
+## 2      UK     1.256
+## 3     USA     1.000</code></pre>
+<p>Para pegar las dos bases de datos se utiliza la función <em>left_join</em> del paquete <em>dplyr</em>, la cual incluye todas las filas de la primera base de datos. El código sería:</p>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb89-1" title="1">data &lt;-<span class="st"> </span><span class="kw">left_join</span>(GDP2020, DollarValue2020, <span class="dt">by=</span><span class="st">&quot;Country&quot;</span>)</a>
+<a class="sourceLine" id="cb89-2" title="2">data</a></code></pre></div>
+<pre><code>##   Country Currency GDPTrillions InDollars
+## 1      UK    Pound         2.10     1.256
+## 2     USA   Dollar        20.58     1.000
+## 3  France     Euro         2.78     1.104</code></pre>
+<p>En la función <em>left_join</em> el primer y segundo elementos son las bases de datos a pegar, mientras que el tercero es la variable llave o identificador que se usa para la pega. Sin embargo, esta última opción no es necesario ponerla, ya que la función por sí misma identificará la variable llave para combinar las bases.</p>
+<p>Supongamos que tenemos esta otra base de datos:</p>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb91-1" title="1">DollarValue2020 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">Currency =</span> <span class="kw">c</span>(<span class="st">&quot;Euro&quot;</span>, <span class="st">&quot;Pound&quot;</span>, <span class="st">&quot;Yen&quot;</span>, <span class="st">&quot;Dollar&quot;</span>),</a>
+<a class="sourceLine" id="cb91-2" title="2">                              <span class="dt">InDollars =</span> <span class="kw">c</span>(<span class="fl">1.104</span>, <span class="fl">1.256</span>, <span class="fl">.00926</span>, <span class="dv">1</span>))</a></code></pre></div>
+<p>Y hacemos la pega:</p>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb92-1" title="1">data &lt;-<span class="st"> </span><span class="kw">left_join</span>(GDP2020, DollarValue2020)</a></code></pre></div>
+<pre><code>## Joining, by = &quot;Currency&quot;</code></pre>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb94-1" title="1">data</a></code></pre></div>
+<pre><code>##   Country Currency GDPTrillions InDollars
+## 1      UK    Pound         2.10     1.256
+## 2     USA   Dollar        20.58     1.000
+## 3  France     Euro         2.78     1.104</code></pre>
+<p>Se tiene que la pega se hace con <em>Currency</em> y solo pega las variables en las cuales encontró similitud entre las dos bases de datos.</p>
+<p>Es posible decirle que deje también las observaciones que no se encuentran en la segunda base de datos, para ello utilizamos la función <em>right_join</em>:</p>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb96-1" title="1">data &lt;-<span class="st"> </span><span class="kw">right_join</span>(GDP2020, DollarValue2020)</a></code></pre></div>
+<pre><code>## Joining, by = &quot;Currency&quot;</code></pre>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb98-1" title="1">data</a></code></pre></div>
+<pre><code>##   Country Currency GDPTrillions InDollars
+## 1      UK    Pound         2.10   1.25600
+## 2     USA   Dollar        20.58   1.00000
+## 3  France     Euro         2.78   1.10400
+## 4    &lt;NA&gt;      Yen           NA   0.00926</code></pre>
+<p>Existen otras funciones para hacer combinaciones entre bases de datos, en el siguiente link pueden ver las demás opciones: <a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="uri">https://dplyr.tidyverse.org/reference/mutate-joins.html</a></p>
+</div>
+<div id="información-adicional" class="section level2">
+<h2><span class="header-section-number">9.11</span> Información adicional</h2>
+<p>El paquete <em>dplyr</em> cuenta con muchas funciones más allá de las que se presentaron brevemente en este capítulo. Por otro lado, las funciones aquí presentadas pueden seguir instrucciones aún más específicas. Por esto, resulta bastante interesante consultar la documentación al respecto en el siguiente link: <a href="https://cran.r-project.org/web/packages/dplyr/dplyr.pdf" class="uri">https://cran.r-project.org/web/packages/dplyr/dplyr.pdf</a></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="ggplot2.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="tidyr.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/08-dplyr.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["LibroR.pdf", "LibroR.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

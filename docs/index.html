@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Una breve introducción a R</title>
+  <meta name="description" content="Una breve introducción a R" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Una breve introducción a R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Una breve introducción a R" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+<link rel="next" href="primeros-ejemplos.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+<script src="book.js"></script>
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Una breve introducción a R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introducción</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#motivación"><i class="fa fa-check"></i><b>1.1</b> Motivación</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#empezando"><i class="fa fa-check"></i><b>1.2</b> Empezando</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="primeros-ejemplos.html"><a href="primeros-ejemplos.html"><i class="fa fa-check"></i><b>2</b> Primeros ejemplos de comandos en R</a><ul>
+<li class="chapter" data-level="2.1" data-path="primeros-ejemplos.html"><a href="primeros-ejemplos.html#r-como-calculadora"><i class="fa fa-check"></i><b>2.1</b> R como calculadora</a></li>
+<li class="chapter" data-level="2.2" data-path="primeros-ejemplos.html"><a href="primeros-ejemplos.html#objetos"><i class="fa fa-check"></i><b>2.2</b> Objetos</a></li>
+<li class="chapter" data-level="2.3" data-path="primeros-ejemplos.html"><a href="primeros-ejemplos.html#escalares-vectores-y-matrices"><i class="fa fa-check"></i><b>2.3</b> Escalares, vectores y matrices</a></li>
+<li class="chapter" data-level="2.4" data-path="primeros-ejemplos.html"><a href="primeros-ejemplos.html#funciones"><i class="fa fa-check"></i><b>2.4</b> Funciones</a></li>
+<li class="chapter" data-level="2.5" data-path="primeros-ejemplos.html"><a href="primeros-ejemplos.html#plots"><i class="fa fa-check"></i><b>2.5</b> Plots</a></li>
+<li class="chapter" data-level="2.6" data-path="primeros-ejemplos.html"><a href="primeros-ejemplos.html#scripts"><i class="fa fa-check"></i><b>2.6</b> Scripts</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="estructura-datos.html"><a href="estructura-datos.html"><i class="fa fa-check"></i><b>3</b> Estructura de datos</a><ul>
+<li class="chapter" data-level="3.1" data-path="estructura-datos.html"><a href="estructura-datos.html#vectores"><i class="fa fa-check"></i><b>3.1</b> Vectores</a></li>
+<li class="chapter" data-level="3.2" data-path="estructura-datos.html"><a href="estructura-datos.html#matrices"><i class="fa fa-check"></i><b>3.2</b> Matrices</a></li>
+<li class="chapter" data-level="3.3" data-path="estructura-datos.html"><a href="estructura-datos.html#data-frames"><i class="fa fa-check"></i><b>3.3</b> Data frames</a></li>
+<li class="chapter" data-level="3.4" data-path="estructura-datos.html"><a href="estructura-datos.html#listas"><i class="fa fa-check"></i><b>3.4</b> Listas</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="leyendo-datos.html"><a href="leyendo-datos.html"><i class="fa fa-check"></i><b>4</b> Leyendo y creando bases de datos</a><ul>
+<li class="chapter" data-level="4.1" data-path="leyendo-datos.html"><a href="leyendo-datos.html#datos-no-disponibles-valores-faltantes-o-missing-data"><i class="fa fa-check"></i><b>4.1</b> Datos no disponibles (Valores faltantes o <em>missing data</em>)</a></li>
+<li class="chapter" data-level="4.2" data-path="leyendo-datos.html"><a href="leyendo-datos.html#leyendo-datos-de-archivos-raw-csv-excel-y-stata"><i class="fa fa-check"></i><b>4.2</b> Leyendo datos de archivos raw, csv, Excel y Stata</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="estadisticas-descriptivas.html"><a href="estadisticas-descriptivas.html"><i class="fa fa-check"></i><b>5</b> Estadísticas descriptivas</a><ul>
+<li class="chapter" data-level="5.1" data-path="estadisticas-descriptivas.html"><a href="estadisticas-descriptivas.html#función-quantile-para-calcular-otros-momentos-de-la-distribución"><i class="fa fa-check"></i><b>5.1</b> Función <em>quantile</em> para calcular otros momentos de la distribución</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="gráficos.html"><a href="gráficos.html"><i class="fa fa-check"></i><b>6</b> Gráficos</a><ul>
+<li class="chapter" data-level="6.1" data-path="gráficos.html"><a href="gráficos.html#opciones-para-editar-los-gráficos"><i class="fa fa-check"></i><b>6.1</b> Opciones para editar los gráficos</a></li>
+<li class="chapter" data-level="6.2" data-path="gráficos.html"><a href="gráficos.html#algunos-tipos-de-gráficos"><i class="fa fa-check"></i><b>6.2</b> Algunos tipos de gráficos</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="gráficos.html"><a href="gráficos.html#scatterplot"><i class="fa fa-check"></i><b>6.2.1</b> <em>Scatterplot</em></a></li>
+<li class="chapter" data-level="6.2.2" data-path="gráficos.html"><a href="gráficos.html#histograma"><i class="fa fa-check"></i><b>6.2.2</b> Histograma</a></li>
+<li class="chapter" data-level="6.2.3" data-path="gráficos.html"><a href="gráficos.html#diagramas-de-densidad"><i class="fa fa-check"></i><b>6.2.3</b> Diagramas de densidad</a></li>
+<li class="chapter" data-level="6.2.4" data-path="gráficos.html"><a href="gráficos.html#gráficos-de-líneas"><i class="fa fa-check"></i><b>6.2.4</b> Gráficos de líneas</a></li>
+<li class="chapter" data-level="6.2.5" data-path="gráficos.html"><a href="gráficos.html#gráfico-de-caja-o-boxplot"><i class="fa fa-check"></i><b>6.2.5</b> Gráfico de caja o <em>boxplot</em></a></li>
+<li class="chapter" data-level="6.2.6" data-path="gráficos.html"><a href="gráficos.html#gráficos-simultáneos"><i class="fa fa-check"></i><b>6.2.6</b> Gráficos simultáneos</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="gráficos.html"><a href="gráficos.html#guardando-gráficos"><i class="fa fa-check"></i><b>6.3</b> Guardando gráficos</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="herramientas-programacion.html"><a href="herramientas-programacion.html"><i class="fa fa-check"></i><b>7</b> Herramientas de programación</a><ul>
+<li class="chapter" data-level="7.1" data-path="herramientas-programacion.html"><a href="herramientas-programacion.html#condicional-if"><i class="fa fa-check"></i><b>7.1</b> Condicional <em>if</em></a></li>
+<li class="chapter" data-level="7.2" data-path="herramientas-programacion.html"><a href="herramientas-programacion.html#ciclo-for"><i class="fa fa-check"></i><b>7.2</b> Ciclo <em>for</em></a></li>
+<li class="chapter" data-level="7.3" data-path="herramientas-programacion.html"><a href="herramientas-programacion.html#escribiendo-tus-propias-funciones"><i class="fa fa-check"></i><b>7.3</b> Escribiendo tus propias funciones</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>8</b> <em>ggplot2</em></a><ul>
+<li class="chapter" data-level="8.1" data-path="ggplot2.html"><a href="ggplot2.html#instalación-de-ggplot2"><i class="fa fa-check"></i><b>8.1</b> Instalación de <em>ggplot2</em></a></li>
+<li class="chapter" data-level="8.2" data-path="ggplot2.html"><a href="ggplot2.html#creando-gráficos-con-ggplot2"><i class="fa fa-check"></i><b>8.2</b> Creando gráficos con <em>ggplot2</em></a><ul>
+<li class="chapter" data-level="8.2.1" data-path="ggplot2.html"><a href="ggplot2.html#mapeo"><i class="fa fa-check"></i><b>8.2.1</b> Mapeo</a></li>
+<li class="chapter" data-level="8.2.2" data-path="ggplot2.html"><a href="ggplot2.html#geoms"><i class="fa fa-check"></i><b>8.2.2</b> <em>Geoms</em></a></li>
+<li class="chapter" data-level="8.2.3" data-path="ggplot2.html"><a href="ggplot2.html#capas"><i class="fa fa-check"></i><b>8.2.3</b> Capas</a></li>
+<li class="chapter" data-level="8.2.4" data-path="ggplot2.html"><a href="ggplot2.html#gráficas-en-varios-paneles"><i class="fa fa-check"></i><b>8.2.4</b> Gráficas en varios paneles</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="ggplot2.html"><a href="ggplot2.html#otros-ejemplos-de-gráficos-con-ggplot2"><i class="fa fa-check"></i><b>8.3</b> Otros ejemplos de gráficos con <em>ggplot2</em></a><ul>
+<li class="chapter" data-level="8.3.1" data-path="ggplot2.html"><a href="ggplot2.html#gráfico-de-densidad"><i class="fa fa-check"></i><b>8.3.1</b> Gráfico de densidad</a></li>
+<li class="chapter" data-level="8.3.2" data-path="ggplot2.html"><a href="ggplot2.html#boxplot"><i class="fa fa-check"></i><b>8.3.2</b> Boxplot</a></li>
+<li class="chapter" data-level="8.3.3" data-path="ggplot2.html"><a href="ggplot2.html#histograma-y-diagrama-de-barras"><i class="fa fa-check"></i><b>8.3.3</b> Histograma y diagrama de barras</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="ggplot2.html"><a href="ggplot2.html#temas-en-ggplot2"><i class="fa fa-check"></i><b>8.4</b> Temas en <em>ggplot2</em></a></li>
+<li class="chapter" data-level="8.5" data-path="ggplot2.html"><a href="ggplot2.html#exportando-gráficos"><i class="fa fa-check"></i><b>8.5</b> Exportando gráficos</a></li>
+<li class="chapter" data-level="8.6" data-path="ggplot2.html"><a href="ggplot2.html#información-adicional"><i class="fa fa-check"></i><b>8.6</b> Información adicional</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="dplyr.html"><a href="dplyr.html"><i class="fa fa-check"></i><b>9</b> <em>dplyr</em></a><ul>
+<li class="chapter" data-level="9.1" data-path="dplyr.html"><a href="dplyr.html#instalación-de-dplyr"><i class="fa fa-check"></i><b>9.1</b> Instalación de dplyr</a></li>
+<li class="chapter" data-level="9.2" data-path="dplyr.html"><a href="dplyr.html#principales-verbos-de-dplyr"><i class="fa fa-check"></i><b>9.2</b> Principales verbos de <em>dplyr</em></a></li>
+<li class="chapter" data-level="9.3" data-path="dplyr.html"><a href="dplyr.html#select"><i class="fa fa-check"></i><b>9.3</b> <em>select()</em></a></li>
+<li class="chapter" data-level="9.4" data-path="dplyr.html"><a href="dplyr.html#arrange"><i class="fa fa-check"></i><b>9.4</b> <em>arrange()</em></a></li>
+<li class="chapter" data-level="9.5" data-path="dplyr.html"><a href="dplyr.html#filter"><i class="fa fa-check"></i><b>9.5</b> <em>filter()</em></a></li>
+<li class="chapter" data-level="9.6" data-path="dplyr.html"><a href="dplyr.html#mutate"><i class="fa fa-check"></i><b>9.6</b> <em>mutate()</em></a></li>
+<li class="chapter" data-level="9.7" data-path="dplyr.html"><a href="dplyr.html#rename"><i class="fa fa-check"></i><b>9.7</b> <em>rename()</em></a></li>
+<li class="chapter" data-level="9.8" data-path="dplyr.html"><a href="dplyr.html#summarise"><i class="fa fa-check"></i><b>9.8</b> <em>summarise()</em></a></li>
+<li class="chapter" data-level="9.9" data-path="dplyr.html"><a href="dplyr.html#operador-pipe"><i class="fa fa-check"></i><b>9.9</b> Operador pipe: %&gt;%</a></li>
+<li class="chapter" data-level="9.10" data-path="dplyr.html"><a href="dplyr.html#combinando-bases-de-datos"><i class="fa fa-check"></i><b>9.10</b> Combinando bases de datos</a></li>
+<li class="chapter" data-level="9.11" data-path="ggplot2.html"><a href="ggplot2.html#información-adicional"><i class="fa fa-check"></i><b>9.11</b> Información adicional</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="tidyr.html"><a href="tidyr.html"><i class="fa fa-check"></i><b>10</b> <em>tidyr</em></a><ul>
+<li class="chapter" data-level="10.1" data-path="tidyr.html"><a href="tidyr.html#instalación-de-tidyr"><i class="fa fa-check"></i><b>10.1</b> Instalación de tidyr</a></li>
+<li class="chapter" data-level="10.2" data-path="tidyr.html"><a href="tidyr.html#principales-5-funciones-de-tidyr"><i class="fa fa-check"></i><b>10.2</b> Principales 5 funciones de <em>tidyr</em></a></li>
+<li class="chapter" data-level="10.3" data-path="ggplot2.html"><a href="ggplot2.html#información-adicional"><i class="fa fa-check"></i><b>10.3</b> Información adicional</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Una breve introducción a R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">Una breve introducción a R</h1>
+<p class="author"><em>Gustavo A. García<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>, Andrea Franco<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> y Miguel Manzur<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a></em></p>
+</div>
+<div id="introducción" class="section level1">
+<h1><span class="header-section-number">1</span> Introducción</h1>
+<p>Este manual es una breve guía de introducción al manejo del software R y tiene como objetivo generar un primer acercamiento a los estudiantes en el manejo y análisis estadístico del software. Su diseño se encuentra en función de los primero requerimientos en programación, procesamiento de datos (<em>data analytics</em>) y análisis estadístico.</p>
+<div id="motivación" class="section level2">
+<h2><span class="header-section-number">1.1</span> Motivación</h2>
+<ul>
+<li>R es un poderoso lenguaje y entorno para computación estadística</li>
+<li>R es un proyecto de dominio público <span class="math inline">\(\Longrightarrow\)</span> <span style="color: blue;">La principale ventaja de R es que es un software libre y existe mucha ayuda disponible en línea</span></li>
+<li>R puede ser usado tal como viene, pero con fines educativos en este curso preferimos usar R en combinación con la interfaz RStudio (también <em>freeware</em>), que tiene un diseño organizado y varias opciones adicionales</li>
+</ul>
+</div>
+<div id="empezando" class="section level2">
+<h2><span class="header-section-number">1.2</span> Empezando</h2>
+<p><span style="color: blue;"><strong>Instalar R</strong></span></p>
+<ul>
+<li>Para instalar R en su computadora, vaya al sitio web de R:
+<a href="https://www.r-project.org" class="uri">https://www.r-project.org</a></li>
+<li>Haga lo siguiente (asumiendo que usted trabaja con un sistema operativo Windows):
+<ul>
+<li>dar clic en descargar CRAN en la barra izquierda</li>
+<li>elige un sitio de descarga</li>
+<li>elija Windows como sistema operativo</li>
+<li>dar clic en base</li>
+<li>elija Descargar la última versión para Windows</li>
+</ul></li>
+</ul>
+<p><span style="color: blue;"><strong>Instalar RStudio</strong></span></p>
+<ul>
+<li>Para instalar RStudio vaya a: <a href="https://rstudio.com" class="uri">https://rstudio.com</a></li>
+<li>Haga lo siguiente (asumiendo que usted trabaja con un sistema operativo Windows):
+<ul>
+<li>clic Descargar RStudio</li>
+<li>clic Descargar RStudio Desktop</li>
+<li>clic <em>Recommended For Your System</em></li>
+<li>descargue y instale el archivo .exe</li>
+</ul></li>
+</ul>
+<p><span style="color: blue;"><strong>Interface de RStudio</strong></span></p>
+<p><img src="docs/images/RStudio.png" /></p>
+<ul>
+<li>Abajo a la izquierda: <span style="color: blue;">ventana de consola</span> (también llamada ventana de comando). Aquí puede escribir comandos simples después del indicador ‘&gt;’ y R ejecutará su comando</li>
+<li>Arriba a la izquierda: <span style="color: blue;">ventana del editor</span> (también llamado <span class="math inline">\(script\)</span>). Hoja de texto donde se van guardando los códigos. Esta ventana puede abrirse por File <span class="math inline">\(\rightarrow\)</span> New <span class="math inline">\(\rightarrow\)</span> R script. Para ejecutar una línea de código se puede hacer clic en Run o presionar CTRL+ENTER</li>
+<li>Arriba a la derecha: <span style="color: blue;">ambiente/environment</span>. En la ventana de ambiente puede ver qué datos y valores tiene R en su memoria. Puede ver y editar los valores haciendo clic en ellos. La ventana del historial/history muestra lo que se ha escrito anteriormente</li>
+<li>Abajo a la derecha: ventana de <span style="color: blue;">Files</span> / <span style="color: blue;">Plots</span> / <span style="color: blue;">Packages</span> / <span style="color: blue;">Help</span> / <span style="color: blue;">Viewer</span>. Aquí puede abrir archivos, ver gráficos (también gráficos anteriores), instalar y cargar paquetes o usar la función de ayuda</li>
+</ul>
+<p><span style="color: blue;"><strong>Directorio de trabajo</strong></span></p>
+<ul>
+<li>El directorio de trabajo es la carpeta donde se cargan y se guardan los archivos con lo que se están trabajando</li>
+<li>Antes de empezar a trabajar en R, se debe fijar el directorio de trabajo donde todos los datos y archivos se van a guardar</li>
+<li>Para fijar el directorio escriba el siguiente código: <code>setwd("nombre_directorio").</code> Por ejemplo</li>
+</ul>
+<pre><code>setwd(&quot;D:/Users/R/Introducción a R&quot;)</code></pre>
+<ul>
+<li>Otra forma es: en la ventana de abajo a la derecha ir a <span style="color: blue;">Files</span>, dar clic en los <span style="color: blue;">3 puntos</span> (<span style="color: blue;">…</span>), buscar y seleccionar la carpeta, luego ir a <span style="color: blue;">More</span> y dar clic en <span style="color: blue;">Set As Working Directory</span></li>
+<li>Se debe aseguar que las barras sean barras diagonales a la derecha (<span style="color: blue;">/</span>) y no olvidar las comillas (<span style="color: blue;">""</span>). R distingue entre mayúsculas y minúsculas, así que se debe asegurar escribir mayúsculas cuando sea necesario</li>
+</ul>
+<p><span style="color: blue;"><strong>Librerias</strong></span></p>
+<ul>
+<li>R realiza sus funciones estadísticas y análisis de datos utilizando <span style="color: blue;">paquetes</span> o <span style="color: blue;">librerias</span>. Con la instalación estándar de R, muchos de los paquetes se instalan</li>
+<li>Para obtener una lista de todos los paquetes instalados, se debe ir a la ventana de <span style="color: blue;">paquetes</span> o escribir <span style="color: blue;">library()</span> en la consola. Si la casilla del paquete se encuentra seleccionada indica que el paquete se encuentra cargado y se puede usar</li>
+<li>Existen muchos más paquetes disponibles en la website de R (CRAN). Si se quiere instalar y usar un paquete se debe hacer lo siguinete (por ejemplo, el paquete llamado “geometry”)
+<ul>
+<li>para instalar el paquete se debe escribir</li>
+</ul></li>
+</ul>
+<pre><code>install.packages(&quot;geometry&quot;)</code></pre>
+<ul>
+<li>luego para ponder en uso el paquete se debe escribir</li>
+</ul>
+<pre><code>library(geometry)</code></pre>
+
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="1">
+<li id="fn1"><p>Profesor Asociado, Departamento de Economía, Universidad EAFIT (Medellín-Colombia). <a href="https://gusgarciacruz.github.io/cv/" class="uri">https://gusgarciacruz.github.io/cv/</a><a href="#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn2"><p>Estudiante de Economía, Departamento de Economía, Universidad EAFIT (Medellín-Colombia), email:<a href="mailto:afrancor@eafit.edu.co" class="email">afrancor@eafit.edu.co</a><a href="#fnref2" class="footnote-back">↩</a></p></li>
+<li id="fn3"><p>Estudiante de Economía, Departamento de Economía, Universidad EAFIT (Medellín-Colombia), email:<a href="mailto:mmanzurg@eafit.edu.co" class="email">mmanzurg@eafit.edu.co</a><a href="#fnref3" class="footnote-back">↩</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="primeros-ejemplos.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/index.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["LibroR.pdf", "LibroR.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

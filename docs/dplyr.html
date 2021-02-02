@@ -616,8 +616,12 @@ View(weather)</code></pre>
 <a class="sourceLine" id="cb83-2" title="2"><span class="kw">nrow</span>(weatherwhole)</a></code></pre></div>
 <pre><code>## [1] 26115</code></pre>
 <p><strong>Horizontalmente</strong></p>
-<p>Aquí la idea es que se tienen dos bases de datos con los mismos individuos pero en cada una de ellas hay diferentes variables de esos individuos y la pega de las bases se hace a través de un identificados de los individuos que se encuentra en las dos bases.</p>
-<p>Se tienen dos bases de datos de tres paises. En la base <em>GDP2020</em> se tiene información sobre el GDP y tipo de moneda, mientras que en <em>DollarValue2020</em> se cuenta con información sobre la tasa de cambio del dólar. La idea, entonces, es juntar las dos bases de datos utilizando como llave o identificador los países.</p>
+<p>Aquí la idea es que se tienen dos bases de datos que puede o no tener los mismos individuos y en cada una de ellas hay diferentes variables de esos individuos y la pega de las bases se hace a través de un identificador de los individuos que se encuentra en las dos bases. Se utiliza, entonces, la función <em>left_join</em> del paquete <em>dplyr</em>, lo cual genera el siguiente tipo de combinación de los datos:<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a></p>
+<center>
+<img src="docs/images/left-join.gif" style="width:50.0%" />
+</center>
+<p>Se observa que se hace la combinación con el identificador común entre las dos bases de datos y la base final deja las observaciones que coinciden en las dos bases, más las observaciones que se encuentran en la primera base de datos.</p>
+<p>Como ejemplo, se tienen dos bases de datos de tres paises. En la base <em>GDP2020</em> se tiene información sobre el GDP y tipo de moneda, mientras que en <em>DollarValue2020</em> se cuenta con información sobre la tasa de cambio del dólar. La idea, entonces, es juntar las dos bases de datos utilizando como llave o identificador los países.</p>
 <div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb85-1" title="1">GDP2020 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">Country =</span> <span class="kw">c</span>(<span class="st">&quot;UK&quot;</span>, <span class="st">&quot;USA&quot;</span>, <span class="st">&quot;France&quot;</span>),</a>
 <a class="sourceLine" id="cb85-2" title="2">                  <span class="dt">Currency =</span> <span class="kw">c</span>(<span class="st">&quot;Pound&quot;</span>, <span class="st">&quot;Dollar&quot;</span>, <span class="st">&quot;Euro&quot;</span>),</a>
 <a class="sourceLine" id="cb85-3" title="3">                  <span class="dt">GDPTrillions =</span> <span class="kw">c</span>(<span class="fl">2.1</span>, <span class="fl">20.58</span>, <span class="fl">2.78</span>))</a>
@@ -633,7 +637,7 @@ View(weather)</code></pre>
 ## 1  France     1.104
 ## 2      UK     1.256
 ## 3     USA     1.000</code></pre>
-<p>Para pegar las dos bases de datos se utiliza la función <em>left_join</em> del paquete <em>dplyr</em>, la cual incluye todas las filas de la primera base de datos. El código sería:</p>
+<p>Para pegar las dos bases de datos se utiliza el siguiente código:</p>
 <div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb89-1" title="1">data &lt;-<span class="st"> </span><span class="kw">left_join</span>(GDP2020, DollarValue2020, <span class="dt">by=</span><span class="st">&quot;Country&quot;</span>)</a>
 <a class="sourceLine" id="cb89-2" title="2">data</a></code></pre></div>
 <pre><code>##   Country Currency GDPTrillions InDollars
@@ -643,32 +647,49 @@ View(weather)</code></pre>
 <p>En la función <em>left_join</em> el primer y segundo elementos son las bases de datos a pegar, mientras que el tercero es la variable llave o identificador que se usa para la pega. Sin embargo, esta última opción no es necesario ponerla, ya que la función por sí misma identificará la variable llave para combinar las bases.</p>
 <p>Supongamos que tenemos esta otra base de datos:</p>
 <div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb91-1" title="1">DollarValue2020 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">Currency =</span> <span class="kw">c</span>(<span class="st">&quot;Euro&quot;</span>, <span class="st">&quot;Pound&quot;</span>, <span class="st">&quot;Yen&quot;</span>, <span class="st">&quot;Dollar&quot;</span>),</a>
-<a class="sourceLine" id="cb91-2" title="2">                              <span class="dt">InDollars =</span> <span class="kw">c</span>(<span class="fl">1.104</span>, <span class="fl">1.256</span>, <span class="fl">.00926</span>, <span class="dv">1</span>))</a></code></pre></div>
+<a class="sourceLine" id="cb91-2" title="2">                              <span class="dt">InDollars =</span> <span class="kw">c</span>(<span class="fl">1.104</span>, <span class="fl">1.256</span>, <span class="fl">.00926</span>, <span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb91-3" title="3">DollarValue2020</a></code></pre></div>
+<pre><code>##   Currency InDollars
+## 1     Euro   1.10400
+## 2    Pound   1.25600
+## 3      Yen   0.00926
+## 4   Dollar   1.00000</code></pre>
 <p>Y hacemos la pega:</p>
-<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb92-1" title="1">data &lt;-<span class="st"> </span><span class="kw">left_join</span>(GDP2020, DollarValue2020)</a></code></pre></div>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb93-1" title="1">data &lt;-<span class="st"> </span><span class="kw">left_join</span>(GDP2020, DollarValue2020)</a></code></pre></div>
 <pre><code>## Joining, by = &quot;Currency&quot;</code></pre>
-<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb94-1" title="1">data</a></code></pre></div>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb95-1" title="1">data</a></code></pre></div>
 <pre><code>##   Country Currency GDPTrillions InDollars
 ## 1      UK    Pound         2.10     1.256
 ## 2     USA   Dollar        20.58     1.000
 ## 3  France     Euro         2.78     1.104</code></pre>
-<p>Se tiene que la pega se hace con <em>Currency</em> y solo pega las variables en las cuales encontró similitud entre las dos bases de datos.</p>
-<p>Es posible decirle que deje también las observaciones que no se encuentran en la segunda base de datos, para ello utilizamos la función <em>right_join</em>:</p>
-<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb96-1" title="1">data &lt;-<span class="st"> </span><span class="kw">right_join</span>(GDP2020, DollarValue2020)</a></code></pre></div>
+<p>Se tiene que la pega se hace con <em>Currency</em> y solo pega las observaciones en las cuales encontró similitud entre las dos bases de datos y deja por fuera la observación 3 de la segunda base que no encontró coincidencia con la primera base de datos.</p>
+Es posible decirle que deje las observaciones que no se encuentran en la segunda base de datos y elimine las observaciones que no coinciden la primera. Para ello utilizamos la función <em>right_join</em>, que genera el siguiente tipo de combinación entre bases de datos:
+<center>
+<img src="docs/images/right-join.gif" style="width:50.0%" />
+</center>
+<p>Se observa que, la base final tiene las observaciones que coinciden entre ambas bases, incluye la observación que no coincide de la segunda base y elimina la observación que no coincide de la primera base de datos.</p>
+<p>En nuestro ejemplo, el código para la pega sería:</p>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb97-1" title="1">data &lt;-<span class="st"> </span><span class="kw">right_join</span>(GDP2020, DollarValue2020)</a></code></pre></div>
 <pre><code>## Joining, by = &quot;Currency&quot;</code></pre>
-<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb98-1" title="1">data</a></code></pre></div>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb99-1" title="1">data</a></code></pre></div>
 <pre><code>##   Country Currency GDPTrillions InDollars
 ## 1      UK    Pound         2.10   1.25600
 ## 2     USA   Dollar        20.58   1.00000
 ## 3  France     Euro         2.78   1.10400
 ## 4    &lt;NA&gt;      Yen           NA   0.00926</code></pre>
-<p>Existen otras funciones para hacer combinaciones entre bases de datos, en el siguiente link pueden ver las demás opciones: <a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="uri">https://dplyr.tidyverse.org/reference/mutate-joins.html</a></p>
+<p>Existen otras funciones para hacer combinaciones entre bases de datos, en los siguientes link pueden ver las demás opciones: <a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="uri">https://dplyr.tidyverse.org/reference/mutate-joins.html</a>, <a href="https://www.garrickadenbuie.com/project/tidyexplain/" class="uri">https://www.garrickadenbuie.com/project/tidyexplain/</a>.</p>
 </div>
 <div id="información-adicional" class="section level2">
 <h2><span class="header-section-number">9.11</span> Información adicional</h2>
 <p>El paquete <em>dplyr</em> cuenta con muchas funciones más allá de las que se presentaron brevemente en este capítulo. Por otro lado, las funciones aquí presentadas pueden seguir instrucciones aún más específicas. Por esto, resulta bastante interesante consultar la documentación al respecto en el siguiente link: <a href="https://cran.r-project.org/web/packages/dplyr/dplyr.pdf" class="uri">https://cran.r-project.org/web/packages/dplyr/dplyr.pdf</a></p>
 
 </div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="4">
+<li id="fn4"><p>Figuras tomadas de <a href="https://www.garrickadenbuie.com/project/tidyexplain/" class="uri">https://www.garrickadenbuie.com/project/tidyexplain/</a><a href="dplyr.html#fnref4" class="footnote-back">↩</a></p></li>
+</ol>
 </div>
             </section>
 

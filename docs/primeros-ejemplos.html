@@ -48,8 +48,6 @@
 
 
 
-<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 <script src="book.js"></script>
 
 
@@ -307,15 +305,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>La función <em>rnorm</em>, como otro ejemplo, es una función estándar en R la cual crea muestras aleatorias de una distribución normal. Por jemplo, para generar 10 valores aleatorios sería</p>
 <div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" title="1"><span class="kw">rnorm</span>(<span class="dv">10</span>)</a></code></pre></div>
-<pre><code>##  [1]  1.44736976  1.13575992 -1.18266848 -0.06636272  0.26125193  0.58614131
-##  [7]  0.32946354 -0.21929789  0.33844957  0.35940339</code></pre>
+<pre><code>##  [1]  0.61843374 -1.58619884  0.10644746  0.88749176  1.68906868 -0.01444084
+##  [7] -0.14260202  0.36672615 -1.11985124  0.83429907</code></pre>
 <p>Para entender mejor qué hacen y cuáles son los argumento de las funciones, podemos ir a la ventana de Help y escribir <em>rnorm</em>, esto genera la siguiente descripción de la función</p>
 <p><img src="docs/images/help_rnorm1.png" style="width:45.0%" /> <img src="docs/images/help_rnorm2.png" style="width:45.0%" /></p>
 <p>La función <em>rnorm</em> tiene tres argumentos: <em>n</em>, <em>mean=0</em> y <em>sd=1</em>. La descripción de los argumentos muestra que <em>n</em> es el número de observaciones, <em>mean=0</em> es para fijar la media y por defecto es 0, y <em>sd=1</em> es la desviación estándar y por defecto se fija en 1. Que estén fijados algunos valores por defecto indica que si no se pone nada R utilizará estos valores</p>
 <p>Por ejemplo, si se quiere generar 10 valores aleatorios de una distribución normal con media 1.2 y desviación estándar 3.4, se debe escribir</p>
 <div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1"><span class="kw">rnorm</span>(<span class="dv">10</span>,<span class="fl">1.2</span>,<span class="fl">3.4</span>)</a></code></pre></div>
-<pre><code>##  [1] -4.5112750  0.2227356  6.0508988 -0.5546368 -3.3266782  0.8160572
-##  [7]  2.1031532 -0.8752353  0.8087161 -5.3996294</code></pre>
+<pre><code>##  [1]  3.0456096  0.5121985 -3.3704786  3.3048996  3.1299728  0.8754542
+##  [7]  1.0417183  0.7482942  3.9451322 -4.1849040</code></pre>
 <p>Note que no es necesario poner <em>media=</em> o <em>sd=</em>, R entiende que el segundo argumento es la media y el tercero es la desviación estándar</p>
 <p>RStudio tiene un muy buena herramienta: cuando se está escribiendo una función, se puede dar la tecla TAB y RStudio mostrará los posibles argumentos</p>
 <p><img src="docs/images/tab.png" style="width:60.0%" /></p>
@@ -326,7 +324,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" title="1">  <span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">5</span>, <span class="fl">.3</span>, <span class="dv">1</span>)) <span class="co"># vector que define los margenes c(bottom, left, top, right)</span></a>
 <a class="sourceLine" id="cb32-2" title="2">  x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100</span>)</a>
 <a class="sourceLine" id="cb32-3" title="3">  <span class="kw">plot</span>(x, <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>)</a></code></pre></div>
-<p><img src="LibroR_files/figure-html/pe1-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="EbookR_introduccion_files/figure-html/pe1-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <div class="rmdcomment">
 <p>
 <strong>Tarea 4:</strong> Grafique 1000 números aleatorios normales con media 3 y desviación estándar 1.7
@@ -398,7 +396,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["LibroR.pdf", "LibroR.epub"],
+"download": ["EbookR_introduccion.pdf", "EbookR_introduccion.epub"],
 "toc": {
 "collapse": "subsection"
 }

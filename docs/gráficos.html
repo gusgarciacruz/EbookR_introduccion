@@ -48,8 +48,6 @@
 
 
 
-<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 <script src="book.js"></script>
 
 
@@ -234,10 +232,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Graficar es una actividad estadística importante, por lo que no debería ser una sorpresa que R incluya muchas herramientas para hacerlo. Dentro de los tipos de gráficos que se pueden crear en R se encuentran: de densidad (como histogramas), de barras, de dispersión, de líneas, circulares, boxplots, entre otros.</p>
 <p>La siguiente línea muestra un gráfico de línea:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">plot</span>(<span class="kw">rnorm</span>(<span class="dv">100</span>), <span class="dt">type=</span><span class="st">&quot;l&quot;</span>, <span class="dt">col=</span><span class="st">&quot;gold&quot;</span>)</a></code></pre></div>
-<p><img src="LibroR_files/figure-html/g1-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="EbookR_introduccion_files/figure-html/g1-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Otro ejemplo es el gráfico de un histograma:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw">hist</span>(<span class="kw">rnorm</span>(<span class="dv">100</span>))</a></code></pre></div>
-<p><img src="LibroR_files/figure-html/g2-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="EbookR_introduccion_files/figure-html/g2-1.png" width="672" style="display: block; margin: auto;" /></p>
 <div id="opciones-para-editar-los-gráficos" class="section level2">
 <h2><span class="header-section-number">6.1</span> Opciones para editar los gráficos</h2>
 <p>Los gráficos que se crean en R se pueden personalizar cambiando fuentes, colores, títulos, entre otros; todo esto se realiza haciendo uso de las opciones de los gráficos.</p>
@@ -255,7 +253,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Por ejemplo, volviendo sobre el histograma</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">hist</span>(<span class="kw">rnorm</span>(<span class="dv">100</span>), <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">main=</span><span class="st">&quot;Histograma&quot;</span>, </a>
 <a class="sourceLine" id="cb3-2" title="2">                 <span class="dt">xlab=</span><span class="st">&quot;Valores&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;Frecuencia&quot;</span>)</a></code></pre></div>
-<p><img src="LibroR_files/figure-html/g3-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="EbookR_introduccion_files/figure-html/g3-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Se puede usar la función <em>par()</em> desde el inicio del código para fijar todas las opciones desde el inicio y que apliquen a todos los gráficos.</p>
 </div>
 <div id="algunos-tipos-de-gráficos" class="section level2">
@@ -267,30 +265,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb4-2" title="2">data &lt;-<span class="st"> </span><span class="kw">read_dta</span>(<span class="st">&quot;http://fmwww.bc.edu/ec-p/data/wooldridge/wage1.dta&quot;</span>)</a>
 <a class="sourceLine" id="cb4-3" title="3"><span class="kw">plot</span>(data<span class="op">$</span>educ,data<span class="op">$</span>wage, <span class="dt">xlab=</span><span class="st">&quot;Años de educación&quot;, ylab=&quot;</span>Salario hora<span class="st">&quot;, col=&quot;</span>blue<span class="st">&quot;)</span></a>
 <a class="sourceLine" id="cb4-4" title="4"><span class="st">abline(lm(wage ~ educ, data=data), col=&quot;</span>red<span class="st">&quot;) # Con esta función se traza la línea de regresión</span></a></code></pre></div>
-<p><img src="LibroR_files/figure-html/g4-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="EbookR_introduccion_files/figure-html/g4-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="histograma" class="section level3">
 <h3><span class="header-section-number">6.2.2</span> Histograma</h3>
 <p>Se pueden crear usando la función <em>hist(x)</em> donde <em>x</em> son los valores que se quieren graficar. La opción <em>freq=FALSE</em> hace que, en lugar de graficar las frecuencias, se grafiquen las densidades. De igual manera, se puede usar la función <em>breaks</em> para establecer el número de barras. Los siguientes ejemplos ilustran los histogramas:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw">hist</span>(data<span class="op">$</span>wage, <span class="dt">xlab=</span><span class="st">&quot;Salario hora&quot;</span>, <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>, </a>
 <a class="sourceLine" id="cb5-2" title="2"><span class="dt">main=</span><span class="st">&quot;Histograma de frecuencia de los salarios&quot;</span>)</a></code></pre></div>
-<p><img src="LibroR_files/figure-html/g5-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="EbookR_introduccion_files/figure-html/g5-1.png" width="672" style="display: block; margin: auto;" /></p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw">hist</span>(data<span class="op">$</span>wage, <span class="dt">xlab=</span><span class="st">&quot;Salario hora&quot;</span>, <span class="dt">col=</span><span class="st">&quot;pink&quot;</span>, </a>
 <a class="sourceLine" id="cb6-2" title="2"><span class="dt">main=</span><span class="st">&quot;Histograma de probabilidad de los salarios&quot;</span>, <span class="dt">freq=</span><span class="ot">FALSE</span>)</a></code></pre></div>
-<p><img src="LibroR_files/figure-html/g5-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="EbookR_introduccion_files/figure-html/g5-2.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="diagramas-de-densidad" class="section level3">
 <h3><span class="header-section-number">6.2.3</span> Diagramas de densidad</h3>
 <p>Para graficar un diagrama de densidad de Kernel, simplemente se debe usar la función <strong>plot(density(x))</strong> siendo <em>x</em> los datos a los que se les estimará la densidad de Kernel.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="kw">plot</span>(<span class="kw">density</span>(data<span class="op">$</span>wage), <span class="dt">main=</span><span class="st">&quot;Densidad de los salarios hora&quot;</span>)</a></code></pre></div>
-<p><img src="LibroR_files/figure-html/g6-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="EbookR_introduccion_files/figure-html/g6-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Superponiendo densidades:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="kw">plot</span>(<span class="kw">density</span>(data<span class="op">$</span>wage[data<span class="op">$</span>nonwhite<span class="op">==</span><span class="dv">1</span>]), <span class="dt">col=</span><span class="st">&quot;red&quot;</span>, <span class="dt">main=</span><span class="st">&quot;Densidad por raza&quot;</span>, </a>
 <a class="sourceLine" id="cb8-2" title="2">     <span class="dt">xlab=</span><span class="st">&quot;Salarios hora&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;Densidad&quot;</span>, <span class="dt">lwd=</span><span class="dv">2</span>, <span class="dt">lty=</span><span class="dv">1</span>)</a>
 <a class="sourceLine" id="cb8-3" title="3"><span class="kw">lines</span>(<span class="kw">density</span>(data<span class="op">$</span>wage[data<span class="op">$</span>nonwhite<span class="op">==</span><span class="dv">0</span>]), <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">lwd=</span><span class="dv">2</span>, <span class="dt">lty=</span><span class="dv">2</span>)</a>
 <a class="sourceLine" id="cb8-4" title="4"><span class="kw">legend</span>(<span class="dv">13</span>, <span class="fl">0.1</span>, <span class="dt">legend =</span> <span class="kw">c</span>(<span class="st">&quot;Afro&quot;</span>, <span class="st">&quot;No afro&quot;</span>),<span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>),<span class="dt">lty=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), </a>
 <a class="sourceLine" id="cb8-5" title="5">       <span class="dt">lwd=</span><span class="dv">2</span>, <span class="dt">cex=</span>.<span class="dv">8</span>, <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>)</a></code></pre></div>
-<p><img src="LibroR_files/figure-html/g7-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="EbookR_introduccion_files/figure-html/g7-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="gráficos-de-líneas" class="section level3">
 <h3><span class="header-section-number">6.2.4</span> Gráficos de líneas</h3>
@@ -299,25 +297,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb9-2" title="2">data2 &lt;-<span class="st"> </span><span class="kw">read_dta</span>(<span class="st">&quot;http://fmwww.bc.edu/ec-p/data/wooldridge/beveridge.dta&quot;</span>)</a>
 <a class="sourceLine" id="cb9-3" title="3"><span class="kw">plot</span>(data2<span class="op">$</span>t, data2<span class="op">$</span>urate, <span class="dt">type=</span><span class="st">&quot;l&quot;</span>, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Tasa de desempleo (%)&quot;</span>,</a>
 <a class="sourceLine" id="cb9-4" title="4">     <span class="dt">xlab=</span><span class="st">&quot;Tiempo&quot;</span>, <span class="dt">main=</span><span class="st">&quot;Tasa de desempleo&quot;</span>)</a></code></pre></div>
-<p><img src="LibroR_files/figure-html/g8-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="EbookR_introduccion_files/figure-html/g8-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="gráfico-de-caja-o-boxplot" class="section level3">
 <h3><span class="header-section-number">6.2.5</span> Gráfico de caja o <em>boxplot</em></h3>
 <p>El <em>boxplot</em> permite visualizar la distribución completa de una variable. Este gráfico muestra los cuartiles, los valores mínimo y máximo y valores raros o <em>outliers</em>. Volviendo sobre la base <em>wage1.dta</em> se hace el <em>boxplot</em> de la variable <em>wage</em>:</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="kw">boxplot</span>(data<span class="op">$</span>wage, <span class="dt">ylab=</span><span class="st">&quot;Salarios hora&quot;</span>)</a></code></pre></div>
-<p><img src="LibroR_files/figure-html/g9-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="EbookR_introduccion_files/figure-html/g9-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>El <em>boxplot</em> puede calcularse por categoría, por ejemplo el <em>boxplot</em> de los salarios hora por nivel educativo:</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="kw">boxplot</span>(data<span class="op">$</span>wage<span class="op">~</span>data<span class="op">$</span>educ, <span class="dt">xlab=</span><span class="st">&quot;Años de educación&quot;, ylab=&quot;</span>Salarios hora<span class="st">&quot;, </span></a>
 <a class="sourceLine" id="cb11-2" title="2"><span class="st">        xaxt=&quot;</span>none<span class="st">&quot;, cex.axis = .8)</span></a>
 <a class="sourceLine" id="cb11-3" title="3"><span class="st">axis(1, seq(1,18,1), cex.axis = .8)</span></a></code></pre></div>
-<p><img src="LibroR_files/figure-html/g10-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="EbookR_introduccion_files/figure-html/g10-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="gráficos-simultáneos" class="section level3">
 <h3><span class="header-section-number">6.2.6</span> Gráficos simultáneos</h3>
 <p>R también permite hacer varios gráficos de diferente tipo simultáneamente:</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="kw">plot</span>(data<span class="op">$</span>wage, <span class="dt">type=</span><span class="st">&quot;l&quot;</span>, <span class="dt">lwd=</span><span class="dv">3</span>, <span class="dt">col=</span><span class="kw">rgb</span>(<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="fl">0.3</span>))</a>
 <a class="sourceLine" id="cb12-2" title="2"><span class="kw">points</span>(data<span class="op">$</span>educ, <span class="dt">pch=</span><span class="dv">20</span>, <span class="dt">cex=</span><span class="dv">4</span>, <span class="dt">col=</span><span class="kw">rgb</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="fl">0.3</span>))</a></code></pre></div>
-<p><img src="LibroR_files/figure-html/g11-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="EbookR_introduccion_files/figure-html/g11-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="guardando-gráficos" class="section level2">
@@ -407,7 +405,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["LibroR.pdf", "LibroR.epub"],
+"download": ["EbookR_introduccion.pdf", "EbookR_introduccion.epub"],
 "toc": {
 "collapse": "subsection"
 }

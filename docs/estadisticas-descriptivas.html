@@ -306,28 +306,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1">x &lt;-<span class="st"> </span><span class="kw">as.integer</span>(<span class="kw">runif</span>(<span class="dt">min =</span> <span class="dv">0</span>, <span class="dt">max =</span> <span class="dv">50</span>, <span class="dt">n =</span> <span class="dv">500</span>))</a>
 <a class="sourceLine" id="cb21-2" title="2"><span class="kw">summary</span>(x)</a></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##    0.00   12.00   22.00   23.24   34.25   49.00</code></pre>
+##    0.00   11.00   23.00   24.18   36.00   49.00</code></pre>
 <p>Como podemos notar, hemos introducido dos funciones para simular nuestros datos, de las que no hemos hablado previamente. La función <em>as.integer</em> le indica a R que el tipo de datos deben ser números enteros, por su parte, la función <em>runif</em> nos permite simular datos que tienen una distribución uniforme, sus parámetros <em>min</em>, <em>max</em>, <em>n</em> nos permiten determinar el mínimo, el máximo y el número de observaciones, respectivamente.</p>
 <p>La función <em>quantile</em>, sin parámetros nos retorna los cuartiles de la variable. El resultado será:</p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1"><span class="kw">quantile</span>(x)</a></code></pre></div>
-<pre><code>##    0%   25%   50%   75%  100% 
-##  0.00 12.00 22.00 34.25 49.00</code></pre>
+<pre><code>##   0%  25%  50%  75% 100% 
+##    0   11   23   36   49</code></pre>
 <p>Para calcular los terciles es necesario poner la opción <em>prob = c(0, 1/3, 1)</em>, de la siguiente forma:</p>
 <div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1"><span class="kw">quantile</span>(x, <span class="dt">prob =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span><span class="op">/</span><span class="dv">3</span>, <span class="dv">1</span>))</a></code></pre></div>
 <pre><code>##        0% 33.33333%      100% 
-##         0        15        49</code></pre>
+##   0.00000  15.33333  49.00000</code></pre>
 <p>En la opción <em>prob</em> nos permite introducir el vector o secuencia de cuantiles que deseamos obtener.</p>
 <p>En el caso de calcular los deciles en la opción <em>prob</em> pondremos:</p>
 <div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1"><span class="kw">quantile</span>(x, <span class="dt">prob =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dt">length =</span> <span class="dv">11</span>))</a></code></pre></div>
 <pre><code>##   0%  10%  20%  30%  40%  50%  60%  70%  80%  90% 100% 
-##  0.0  5.0  9.0 13.0 18.6 22.0 27.0 33.0 37.0 43.0 49.0</code></pre>
+##    0    5    9   14   19   23   29   34   40   45   49</code></pre>
 <p>Aquí se introduce la función <em>seq</em>. Esta función crea un vector secuencial que cumple con las indicaciones dadas por los parámetros. El primer parámetro indica de dónde parte, el segundo, hasta dónde llega y <em>length</em> determinará el número de valores.</p>
 <p>Para observar distintos cuantiles solo basta con variar el vector que ingresamos en <em>prob</em>; observemos los percentiles de 5 en 5, es decir los quintiles. Para ello, consideramos un nuevo parámetro <em>by</em>, que determina la distancia entre cada elemento de nuestra secuencia.</p>
 <div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1"><span class="kw">quantile</span>(x, <span class="dt">prob =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dt">by =</span> <span class="fl">0.05</span>))</a></code></pre></div>
 <pre><code>##    0%    5%   10%   15%   20%   25%   30%   35%   40%   45%   50%   55%   60% 
-##  0.00  2.00  5.00  7.00  9.00 12.00 13.00 16.00 18.60 21.00 22.00 25.00 27.00 
+##  0.00  3.00  5.00  6.85  9.00 11.00 14.00 16.00 19.00 22.00 23.00 26.00 29.00 
 ##   65%   70%   75%   80%   85%   90%   95%  100% 
-## 30.00 33.00 34.25 37.00 39.00 43.00 47.00 49.00</code></pre>
+## 31.00 34.00 36.00 40.00 42.00 45.00 47.00 49.00</code></pre>
 
 </div>
 </div>

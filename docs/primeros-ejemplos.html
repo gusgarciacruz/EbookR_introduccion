@@ -208,7 +208,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.2" data-path="tidyr.html"><a href="tidyr.html#principales-5-funciones-de-tidyr"><i class="fa fa-check"></i><b>10.2</b> Principales 5 funciones de <em>tidyr</em></a></li>
 <li class="chapter" data-level="10.3" data-path="index.html"><a href="index.html#información-adicional"><i class="fa fa-check"></i><b>10.3</b> Información adicional</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="games.html"><a href="games.html"><i class="fa fa-check"></i><b>11</b> Juegos para procrastinar con RStudio</a></li>
+<li class="chapter" data-level="11" data-path="games.html"><a href="games.html"><i class="fa fa-check"></i><b>11</b> Juegos para procrastinar con RStudio</a><ul>
+<li class="chapter" data-level="11.1" data-path="games.html"><a href="games.html#el-paquete-rcade"><i class="fa fa-check"></i><b>11.1</b> El paquete <code>Rcade</code></a></li>
+<li class="chapter" data-level="11.2" data-path="index.html"><a href="index.html#información-adicional"><i class="fa fa-check"></i><b>11.2</b> Información adicional</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
 
@@ -307,15 +310,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>La función <em>rnorm</em>, como otro ejemplo, es una función estándar en R la cual crea muestras aleatorias de una distribución normal. Por jemplo, para generar 10 valores aleatorios sería</p>
 <div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" title="1"><span class="kw">rnorm</span>(<span class="dv">10</span>)</a></code></pre></div>
-<pre><code>##  [1]  1.4481899 -0.4297925  0.7691398 -0.7396479 -0.2506830  0.5409848
-##  [7] -0.8546032  0.4043898  0.1504466  0.8215202</code></pre>
+<pre><code>##  [1] -0.940741924  0.006702472  0.453943123 -0.706798753  1.909610521
+##  [6] -0.358978906 -0.321266304 -0.620536087  0.659614141 -1.016939870</code></pre>
 <p>Para entender mejor qué hacen y cuáles son los argumento de las funciones, podemos ir a la ventana de Help y escribir <em>rnorm</em>, esto genera la siguiente descripción de la función</p>
 <p><img src="docs/images/help_rnorm1.png" style="width:45.0%" /> <img src="docs/images/help_rnorm2.png" style="width:45.0%" /></p>
 <p>La función <em>rnorm</em> tiene tres argumentos: <em>n</em>, <em>mean=0</em> y <em>sd=1</em>. La descripción de los argumentos muestra que <em>n</em> es el número de observaciones, <em>mean=0</em> es para fijar la media y por defecto es 0, y <em>sd=1</em> es la desviación estándar y por defecto se fija en 1. Que estén fijados algunos valores por defecto indica que si no se pone nada R utilizará estos valores</p>
 <p>Por ejemplo, si se quiere generar 10 valores aleatorios de una distribución normal con media 1.2 y desviación estándar 3.4, se debe escribir</p>
 <div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1"><span class="kw">rnorm</span>(<span class="dv">10</span>,<span class="fl">1.2</span>,<span class="fl">3.4</span>)</a></code></pre></div>
-<pre><code>##  [1] -2.7228719  0.7074456  5.2430476  1.2302040  1.4821690  5.1096490
-##  [7]  0.7858615  2.6328423  0.7845177  0.2088084</code></pre>
+<pre><code>##  [1] -1.2518336  6.4356103 -2.5676369 -1.0117040  4.5400694 -0.8639502
+##  [7]  3.6550927  3.4496585  4.8941738 -3.4285149</code></pre>
 <p>Note que no es necesario poner <em>media=</em> o <em>sd=</em>, R entiende que el segundo argumento es la media y el tercero es la desviación estándar</p>
 <p>RStudio tiene un muy buena herramienta: cuando se está escribiendo una función, se puede dar la tecla TAB y RStudio mostrará los posibles argumentos</p>
 <p><img src="docs/images/tab.png" style="width:60.0%" /></p>

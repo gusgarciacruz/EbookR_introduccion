@@ -208,7 +208,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.2" data-path="tidyr.html"><a href="tidyr.html#principales-5-funciones-de-tidyr"><i class="fa fa-check"></i><b>10.2</b> Principales 5 funciones de <em>tidyr</em></a></li>
 <li class="chapter" data-level="10.3" data-path="index.html"><a href="index.html#información-adicional"><i class="fa fa-check"></i><b>10.3</b> Información adicional</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="games.html"><a href="games.html"><i class="fa fa-check"></i><b>11</b> Juegos para procrastinar con RStudio</a></li>
+<li class="chapter" data-level="11" data-path="games.html"><a href="games.html"><i class="fa fa-check"></i><b>11</b> Juegos para procrastinar con RStudio</a><ul>
+<li class="chapter" data-level="11.1" data-path="games.html"><a href="games.html#el-paquete-rcade"><i class="fa fa-check"></i><b>11.1</b> El paquete <code>Rcade</code></a></li>
+<li class="chapter" data-level="11.2" data-path="index.html"><a href="index.html#información-adicional"><i class="fa fa-check"></i><b>11.2</b> Información adicional</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
 
@@ -231,9 +234,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="games" class="section level1">
 <h1><span class="header-section-number">11</span> Juegos para procrastinar con RStudio</h1>
-<p>Con el paquete <code>Rcade</code><a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a> es posible acceder a juegos como Tetris, Mario Bros, Spider Solitaire, entre otros.</p>
+<div id="el-paquete-rcade" class="section level2">
+<h2><span class="header-section-number">11.1</span> El paquete <code>Rcade</code></h2>
+<p>Con el paquete <code>Rcade</code> es posible acceder a juegos como Tetris, Mario Bros, Spider Solitaire, entre otros.</p>
 <p>El paquete debe ser instalado desde GitHub:</p>
-<pre><code>remotes::install_github(&#39;RLesur/Rcade&#39;, force = TRUE)
+<pre><code>install.packages(remotes)
+remotes::install_github(&#39;RLesur/Rcade&#39;, force = TRUE)
 library(Rcade)</code></pre>
 <p>La siguiente función permite saber la lista de juevos disponibles:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">Rcade<span class="op">::</span>games</a></code></pre></div>
@@ -262,7 +268,12 @@ Rcade::games$CathTheEgg
 Rcade::games$CustomTetris
 Rcade::games$Core
 Rcade::games$SURVIVOR</code></pre>
+</div>
+<div id="información-adicional" class="section level2">
+<h2><span class="header-section-number">11.2</span> Información adicional</h2>
+<p>Más información sobre el paquete puede ser consultada en <a href="https://github.com/rlesur/rcade" class="uri">https://github.com/rlesur/rcade</a></p>
 
+</div>
 </div>
 
 
@@ -272,13 +283,6 @@ Rcade::games$SURVIVOR</code></pre>
 
 
 
-
-<div class="footnotes">
-<hr />
-<ol start="4">
-<li id="fn4"><p>Más información sobre el paquete puede ser consultada en <a href="https://github.com/rlesur/rcade" class="uri">https://github.com/rlesur/rcade</a><a href="games.html#fnref4" class="footnote-back">↩</a></p></li>
-</ol>
-</div>
             </section>
 
           </div>
